@@ -1,0 +1,20 @@
+
+.el-button-group:before, .el-button-group:after{
+  display: table;
+  content: "";
+}
+.el-button-group:after{
+  clear: both;
+}
+.el-button{
+    padding:7px 10px;
+    font-size: 12px;
+}
+.el-button--small{
+    padding:5px 8px;
+    font-size: 12px;
+}
+.el-button--large{
+     padding:10px 15px;
+    font-size: 12px;
+}

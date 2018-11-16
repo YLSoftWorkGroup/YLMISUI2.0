@@ -1,0 +1,102 @@
+body,html
+  line-height:1
+  font-family:'PingFang SC','STHeitiSC-Light','Helvetica-Light',arial,sans-serif !important
+
+.clearfix
+	display: inline-block
+	&:after
+		display:block
+		content:"."
+		height:0
+		line-height:0
+		clear:both
+		visibility:hidden
+	
+input:-webkit-autofill
+    -webkit-box-shadow 0 0 0px 1000px #fff inset
+    
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.7)
+      transform: scaleY(0.7)
+  
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.5)
+      transform: scaleY(0.5)  
+
+
+ .form-content-vertical
+      margin-bottom:0px !important
+      margin-right:5px !important
+      vertical-align:middle !important
+      .el-form-item__content
+          line-height: 0px !important
+
+   //清除验证行
+  .yl-clearV .el-row .el-col  .el-form-item
+      margin-bottom:5px !important
+
+  .yl-table-icon
+      color:red
+      font-size:16px
+      border:1px dotted  #fff
+      text-align center
+      i
+          padding-right:0px
+  .yl-table-icon:hover
+      cursor:pointer
+            
+
+// 单据头部样式
+  .yl-order-header
+      height:55px
+      .yl-order-logo
+          height:50px
+          margin-left 30px
+      .yl-order-title
+          text-align:center
+          font-size: 20px
+          color:#1D8CE0
+          font-weight:900
+          .yl-order-small-title
+              font-size: 14px
+              font-weight:600
+              color:#58B7FF
+      .yl-order-code
+          font-size:12px
+          font-weight:400
+
+  // 表格编辑器
+  .yl-row-TableEditor
+      height:auto
+      min-height:200px
+      padding:10px 15px
+
+  .yl-text-color
+        color:#b6d06c
+
+
+  .yl-tree-style
+        display:inline-block
+        vertical-align:middle
+        font-size:12px
+        i
+            font-size:14px
+        .yl-node-style
+            font-size:12px
+            color:rgb(151, 168, 190)
+            padding-left:2px
+  .yl-hidden
+        display:none
+  .yl-tagreset
+        height:20px !important
+        line-height:20px !important
+        border-radius:2px !important
+        padding:0px 3px !important
+    
+
+	 
+

@@ -1,0 +1,79 @@
+﻿/* 表头和表尾样式 */
+
+.print-tablecss {
+  font-family: "宋体";
+  font-size: 10pt;
+  margin: 0 auto;
+}
+
+
+/* thead of middle table  */
+
+.print-MaterialTable {
+  font-family: "宋体";
+  border-collapse: collapse;
+  border: 1px solid #000000;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0 auto;
+}
+
+
+/* td of middle table */
+
+.print-tdcss {
+  padding: 0px 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-collapse: collapse;
+  font-size: 10pt;
+  white-space: nowrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  table-layout: fixed;
+  font-family: "宋体";
+}
+
+
+/* newline style */
+
+.print-tdcss1 {
+  font-family: "宋体";
+  border-width: 1px;
+  border-style: solid;
+  border-collapse: collapse;
+  font-size: 10pt;
+}
+
+
+/* QRcode style */
+
+.print-qrcss {
+  font-size: 10pt;
+  font-family: "宋体";
+  border-width: 1px;
+  border-style: solid;
+  border-collapse: collapse;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+
+
+/* 表格基础样式 */
+
+.print-BaseStyle {
+  font-family: "宋体";
+  border-collapse: collapse;
+  border: 1px solid #000000;
+}
+.print-BaseStyle td
+{
+  border: 1px solid #000000;
+  padding:4px;
+  font-family: '宋体';
+  font-size: 10pt;
+
+}

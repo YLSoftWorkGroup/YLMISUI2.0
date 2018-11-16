@@ -1,0 +1,29 @@
+
+.el-tree{
+  cursor: default;
+  background: #fff;
+  border:none;
+  overflow: auto;
+  line-height: 0px;
+}
+.el-tree-node__content{
+  line-height: 28px;
+  height: 28px;
+  cursor: default;
+}
+.el-tree-node__label{
+  font-size: 12px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.el-tree>.el-tree-node{
+  display: inline-block !important;
+  min-width: 100%;
+  overflow: hidden;
+  
+}
+
+.el-tree__empty-text{ 
+  font-size: 12px;
+}

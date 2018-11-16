@@ -1,0 +1,6 @@
+
+.el-tooltip__popper.is-dark{
+  background:none;
+  background-color: rgba(0, 0, 0, .6);
+  color: #fff;
+}

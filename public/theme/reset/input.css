@@ -1,0 +1,10 @@
+.el-input__inner{
+  height:28px;
+  font-size:12px;
+}
+.el-input--small .el-input__inner{
+   height:24px;
+}
+.el-input--small .el-input__icon {
+  line-height: 28px;
+}

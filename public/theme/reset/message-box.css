@@ -1,0 +1,6 @@
+
+.el-message-box{
+  border-radius: 0px;
+  border: rgb(85, 91, 99)  solid 1px;
+  box-shadow: 1px 1px 4px 2px rgb(85, 91, 99)
+}
