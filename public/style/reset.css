@@ -63,9 +63,6 @@ a {
     backface-visibility: hidden;
 }
 
-i{
-    padding-right:3px
-}
 a:hover
 {
     cursor:pointer;
@@ -91,16 +88,12 @@ li {
 ::-webkit-scrollbar-thumb:vertical {
     height: 8px;
     background-color: rgba(125, 125, 125, 0.7);
-    border-radius: 0px;
+    border-radius: 4px;
 }
+
 
 ::-webkit-scrollbar-thumb:horizontal {
     width: 8px;
     background-color: rgba(125, 125, 125, 0.7);
-    border-radius: 0px;
+    border-radius: 4px;
 }
-
-
-
-
-

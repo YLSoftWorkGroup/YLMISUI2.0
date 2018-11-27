@@ -2,14 +2,14 @@
 	<div class="login">
 		<div class="header">
 			<div class="logowrapper">
-					<img class="logo" src="img/zgztlogo.png"  />
+					<img class="logo" src="img/logo.png"  />
 				</div>
 			<div class="title">{{systemTitleName}}</div>
 		</div>
 		<div class="main">
 			<div class="title"></div>
 			<div class="loginform">
-				<el-form class="loginlay" :model="LoginForm" inline-message status-icon :rules="formRules" ref="LoginForm" label-width="0px" label-position="left">
+				<el-form class="loginlay" :model="LoginForm" status-icon :rules="formRules" ref="LoginForm" label-width="0px" label-position="left">
 					<el-form-item  prop="userName" >
 							<el-input v-model="LoginForm.userName" size="medium"  placeholder="请输入用户名" style="width:270px">
 								<template slot="prepend"><i class="icon-user-tie"></i></template>

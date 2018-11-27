@@ -4,7 +4,7 @@
     <div class="header">
         <div class="left">
 			    <div class="logowrapper">
-					<img class="logo" src="image/zgztlogo.png"  />
+					<img class="logo" src="/img/logo.png"  />
 				</div>
 				<div class="title">{{systemTitleName}}</div>
 				<div class="org" @click="_orgSel" v-clickoutside="_hiddenBlock">
@@ -162,13 +162,11 @@ export default {
 			  this.OrgShow=false;
 		  },
 		  nodeclick(node){
-			  util.setCookie('reportOrg',JSON.stringify(node),1);
-			  this.OrgName='组织机构切换中，请稍后...';
-			  this.OrgShow=false;
-			  
-			  //跳转
-			 
-			  window.location = getClientObj().sysConf.url+'/api/Rediect/rediect?url='+location.href;
+				util.setCookie('reportOrg',JSON.stringify(node),1);
+				this.OrgName=node.text;
+				this.OrgShow=false;
+				//跳转
+				this.$router.replace({path: '/redirect' + this.$route.fullPath})
 		  },
 		  loadNode(node, resolve){
             if(node.level === 0) {

@@ -130,7 +130,50 @@ export default {
       });
     });
   },
-
+   //租赁中心动态表审核
+  getThisMonthLeaseStore: function (mon, orgId) {
+    return new Promise(function (resolve, reject) {
+      let arr = mon.split('-');
+      let year = arr[0];
+      let month = parseInt(arr[1]) + 1;
+      if (month == 13) {
+        year = parseInt(year) + 1;
+        month = 1;
+      };
+      if (month < 10) {
+        month = '0' + month;
+      };
+      let rstmon = year + '-' + month;
+      let params = {
+        queryConditionItem: [{
+            dataField: 'OrgId',
+            dataValue: orgId,
+            op: 'EQ',
+            relation: 'and'
+          },
+          {
+            dataField: 'V_Col8',
+            dataValue: rstmon,
+            op: 'EQ',
+            relation: 'and'
+          }
+        ],
+        maxResultCount: 1,
+        skipCount: 1,
+        sorting: '',
+        draw: 1
+      };
+      fetch({
+        url: 'api/services/app/singleTable33/getMainPageList',
+        method: 'post',
+        data: params
+      }).then((data) => {
+        resolve(data);
+      }).catch((err) => {
+        reject(new Error('执行结果异常！' + err))
+      });
+    });
+  },
 
   //打印导出函数
   orderPrintEvent: function (option, _this, LODOP, userConf) {
@@ -200,7 +243,7 @@ export default {
       LODOP.SET_PRINT_STYLEA(0, 'QRCodeVersion', 14);
       LODOP.SET_PRINT_STYLEA(0, 'QRCodeErrorLevel', 'H');
       LODOP.SET_PRINT_STYLEA(0, "ItemType", 1);
-      LODOP.ADD_PRINT_IMAGE(propertys.marginRight, propertys.marginLeft, 76, 64, "<img style='z-index:5;position:absolute;left:0px;top:0px;border:0;' src='img/zgztlogo2.png'/>");
+      LODOP.ADD_PRINT_IMAGE(propertys.marginRight, propertys.marginLeft, 76, 64, "<img style='z-index:5;position:absolute;left:0px;top:0px;border:0;' src='static/img/zgztlogo2.png'/>");
       LODOP.SET_PRINT_STYLEA(0, "Stretch", 2);
       LODOP.SET_PRINT_STYLEA(0, "TransColor", "#FFFFFF");
       LODOP.SET_PRINT_STYLEA(0, "ItemType", 1);
@@ -255,7 +298,7 @@ export default {
       LODOP.SET_PRINT_STYLEA(0, 'QRCodeVersion', 14);
       LODOP.SET_PRINT_STYLEA(0, 'QRCodeErrorLevel', 'H');
       LODOP.SET_PRINT_STYLEA(0, "ItemType", 1);
-      LODOP.ADD_PRINT_IMAGE(property.padding.top, property.padding.left, 76, 64, "<img style='z-index:5;position:absolute;left:0px;top:0px;border:0;' src='img/zgztlogo2.png'/>");
+      LODOP.ADD_PRINT_IMAGE(property.padding.top, property.padding.left, 76, 64, "<img style='z-index:5;position:absolute;left:0px;top:0px;border:0;' src='static/img/zgztlogo2.png'/>");
       LODOP.SET_PRINT_STYLEA(0, "Stretch", 2);
       LODOP.SET_PRINT_STYLEA(0, "TransColor", "#FFFFFF");
       LODOP.SET_PRINT_STYLEA(0, "ItemType", 1);

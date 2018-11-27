@@ -1,0 +1,22 @@
+
+/*主色*/
+.color-primary {color:#1BD8A9;}
+.background-color-primary {color:#1BD8A9;}
+
+/*自定义色*/
+.main-background,.header-background,.footer-background{background-color:#333333;}
+.header-left-text-color {color:#ddd;}
+.main-text-color,.main-static-color {color:#ddd;}
+.main-text-color:hover {color:#1BD8A9;}
+.menu-border {border:1px solid #999999;}
+.menu-background {background-color:#666666;}
+.el-submenu__title,.el-menu-item,.el-submenu__title i{color:#ddd;}
+.el-menu {background-color: #666666;border:none;}
+.el-submenu-main >.el-submenu__title{border-top: 1px solid #757575;border-bottom: 1px solid #4F4F4F;}
+.el-submenu-main >.el-submenu__title:hover,.el-menu-item:hover{background:#333333;border-left:3px #1BD8A9 solid;}
+.el-submenu .el-menu{background-color:#4C4C4C;}
+.el-submenu-main.el-submenu.is-active> .el-submenu__title{border-left:3px #1BD8A9 solid;background:#333333;border-bottom: 1px solid #27364f;}
+.el-menu-item:focus,.el-menu-item:hover{background-color: #65768c;} 
+.page-background {background-color:#666666;}
+.page-border {border:1px solid #999999;}
+.tabPanel-item-active{ background-color:#1BD8A9!important;color: #fff !important;border-color:#1BD8A9 !important;}

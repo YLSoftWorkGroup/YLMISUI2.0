@@ -1,7 +1,9 @@
 
+import Vue from 'vue'
 import des from './des'
 import router from '@/router';
 import {encode,decode} from './base64';
+import i18n from '@/lang'
 export default {
      //获取模块配置信息
      //数字转化为大写
@@ -192,16 +194,18 @@ export default {
         }
     },
     dealFunction:function(k,v) {
-                    let _this=this;
-                    if(v===null){ return v;}
-                    if(v.indexOf&&v.indexOf('function')>-1){
-                        return eval("(function(){ return "+v+" })()")
-                    }
-                    return v;
-                },
+        if(v===null){ return v;}
+        if(v.indexOf&&v.indexOf('function')>-1){
+            return eval("(function(){ return "+v+" })()")
+        }
+        if(v.indexOf&&v.indexOf('$t')>-1){
+           return  new Vue({i18n}).$t(v.split('|')[1])
+        }
+        return v;
+    },
     base64Decrypt:function(value){
             return  decode(value);
-        },
+    },
     base64Encrypt:function(value){
              return  encode(value);
     },
@@ -314,7 +318,6 @@ export default {
 
     //改变主题
     changeTheme:function(themeValue) {
-
         function loadCss(path) {
             var head = document.getElementsByTagName('head')[0]
             var link = document.createElement('link')
@@ -326,9 +329,12 @@ export default {
 
         // 需要移到单独的文件存放.
         var itemPath = './theme/' + themeValue.toLowerCase() + '/index.css' 
-        loadCss(itemPath)
         localStorage.setItem('themeValue', themeValue)
+        loadCss(itemPath)
         loadCss('./theme/reset/index.css')
+        loadCss('./theme/globalTheme/' + themeValue.toLowerCase() + '.css')
+        loadCss('./theme/globalTheme/globalStyle.css')
+       
       }
 
 }

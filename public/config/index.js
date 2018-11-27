@@ -11,7 +11,7 @@ function getClientObj() {
     return {
         sysConf:{
             //url:'http://192.168.20.15:7001', 
-            url:'http://192.168.20.250:8080', 
+            url:'http://192.168.20.116:8020',
             timeout:'90000', //本机请求响应时间
             clientId:"C1BC4CCED8B544FC15268B8F29CB0386",
             clientSecret:"8F3D3BF3E3EA2895CD7E8E6173385AC57A39C27870714B66",

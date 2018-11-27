@@ -1,5 +1,5 @@
 <template>
-<yl-panelpage :titleName="'应用系统'" >
+<yl-panelpage :titleName="this.getMenuInfo().menuFullName" >
 <div slot="content">
     <yl-layout>
         <div slot="fristbox" >
@@ -46,7 +46,7 @@
          </div>
     </yl-layout>
     <!--编辑界面-->
-         <el-dialog ref="mainDialog" title="编辑" :visible.sync="addFormVisible" size="small"  top="10%" 
+         <el-dialog ref="mainDialog" title="编辑" :visible.sync="addFormVisible" width="45%"  top="10%" 
                     :modal-append-to-body="false" :close-on-click-modal="false"  >
                     <Edit :selectRow="currentRows" @close="_close"  v-if="addFormVisible"></Edit>
          </el-dialog>
@@ -83,6 +83,7 @@ export default {
                                 attr: {
                                     data: this.tableData,
                                     highlightCurrent:true,
+                                    size:"small"
                                 }
                             },
                             columns: [

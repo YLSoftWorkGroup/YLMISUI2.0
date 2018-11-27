@@ -8,6 +8,7 @@
                     height:'100%',
                     border:true,
                     stripe:true,
+                    size:'small',
                     highlightCurrent:true,   //默认配置为单选
                     style:{width:'100%',height:'100%'},
                 },
@@ -116,6 +117,7 @@
                                 max-height={tableAttr.maxHeight}
                                 stripe={tableAttr.stripe}
                                 border={tableAttr.border}
+                                size={tableAttr.size}
                                 fit={tableAttr.fit}
                                 show-header={tableAttr.showHeader}
                                 highlight-current-row={tableAttr.highlightCurrent}
@@ -124,10 +126,21 @@
                                 row-style={tableAttr.rowStyle}
                                 row-key={tableAttr.rowKey}
                                 empty-text={tableAttr.emptyText}
+                                cell-class-name={tableAttr.cellClassName}
+                                cell-style={tableAttr.cellStyle}
+                                header-row-class-name={tableAttr.headerRowClassName}
+                                header-row-style={tableAttr.headerrowStyle}
+                                header-cell-class-name={tableAttr.headerCellClassName}
+                                header-cell-style={tableAttr.headerCellStyle}
                                 default-expand-all={tableAttr.defaultExpandAll}
                                 expand-row-keys={tableAttr.expandRowKeys}
                                 default-sort={tableAttr.defaultSort}
                                 tooltip-effect={tableAttr.tooltipEffect}
+                                show-summary={tableAttr.showSummary}
+                                sum-text={tableAttr.sumText}
+                                summary-method={tableAttr.summaryMethod}
+                                span-method={tableAttr.spanMethod}
+                                select-on-indeterminate={tableAttr.selectOnIndeterminate}
                                 on-select={this.handleEvent('select')}
                                 on-select-all={this.handleEvent('select-all')}
                                 on-selection-change={this.handleEvent('selection-change')}
@@ -139,17 +152,19 @@
                                 on-row-contextmenu={this.handleEvent('row-contextmenu')}
                                 on-row-dblclick={this.handleEvent('row-dblclick')}
                                 on-header-click={this.handleEvent('header-click')}
+                                on-header-contextmenu={this.handleEvent('header-contextmenu')}
                                 on-sort-change={this.handleEvent('sort-change')}
                                 on-filter-change={this.handleEvent('filter-change')}
                                 on-current-change={this.handleEvent('current-change')}
                                 on-header-dragend={this.handleEvent('header-dragend')}
-                                on-expand={this.handleEvent('expand')}
+                                on-expand-change={this.handleEvent('expand-change')}
                                 >
                                     {
                                         columns.map((column) => {
                                         const columnAttr = Object.assign({}, columnDefaultAttr, column.attr)
                                         return <el-table-column
                                             type={columnAttr.type}
+                                            index={columnAttr.index}
                                             column-key={columnAttr.columnKey}
                                             label={columnAttr.label}
                                             prop={columnAttr.prop}
@@ -159,6 +174,8 @@
                                             render-header={columnAttr.renderHeader}
                                             sortable={columnAttr.sortable}
                                             sort-method={columnAttr.sortMethod}
+                                            sort-by={columnAttr.sortBy}
+                                            sort-orders={columnAttr.sortOrders}
                                             resizable={columnAttr.resizable}
                                             formatter={columnAttr.formatter}
                                             show-overflow-tooltip={columnAttr.showOverflowTooltip}
@@ -169,6 +186,7 @@
                                             selectable={columnAttr.selectable}
                                             reserve-selection={columnAttr.reserveSelection}
                                             filters={columnAttr.filters}
+                                            filter-placement={columnAttr.filterPlacement}
                                             filter-multiple={columnAttr.filterMultiple}
                                             filter-method={columnAttr.filterMethod}
                                             filtered-value={columnAttr.filterValue}
@@ -178,7 +196,7 @@
                                             }
                                         </el-table-column>
                                             })
-                                        }
+                                    }
                         </el-table>
                     </div>
                     <div slot="secondbox" >
@@ -189,6 +207,9 @@
                                     current-page={tableAttr.data.draw}
                                     page-sizes={ this.paginationAttr.pageSizes}
                                     page-size={this.input.maxResultCount}
+                                    prev-text={this.paginationAttr.prevText}
+                                    next-text={this.paginationAttr.nextText}
+                                    disabled={this.paginationAttr.disabled}
                                     total={tableAttr.data.recordsFiltered}
                                     layout={ this.paginationAttr.layout}>
                                 </el-pagination>

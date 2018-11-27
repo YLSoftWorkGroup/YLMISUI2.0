@@ -1,6 +1,6 @@
 <template>
 <div>
-<el-form  :model="formModel"  :rules="rules"  ref="formModel" label-width="100px" >
+<el-form  :model="formModel"  :rules="rules" status-icon  ref="formModel" label-width="100px" >
  <el-form-item label="应用代码" prop="appCode">
       <el-input v-model="formModel.appCode" ></el-input>
   </el-form-item>
@@ -43,7 +43,7 @@
     </el-col>
     <el-col :span="12">
         <el-form-item label="排序" prop="sortCode" >
-            <el-input-number v-model="formModel.sortCode" :min="1" ></el-input-number>
+            <el-input-number v-model="formModel.sortCode" :min="1" size="small"></el-input-number>
         </el-form-item>
     </el-col>
   </el-row>

@@ -1,19 +1,18 @@
 <template>
 <div class="main" ref="main" :style="{'width': bodyStyle.width, 'height': bodyStyle.height }">
-	<div class="header" >
+	<div class="header header-background" >
 		<div class="left">
 			<div class="logowrapper">
 					<img class="logo" src="img/zgztlogo.png"  />
 				</div>
-				<div class="title">{{systemTitleName}}</div>
+				<div class="title"> {{systemTitleName}}</div>
 		</div>
 		<div class="right">
 			<ul>
-				<li @click="_loginCenter"><i class="icon-users icon"></i><span>用户中心</span></li>
-				<li @click="_reportCenter"  v-if="hasReportCenter"><i class="icon-stats-dots icon"></i><span>报表中心</span></li>
-			    <li @click="_loginout"><i class="icon-switch2  icon"></i><span>注销登录</span></li>
+				<li @click="_loginCenter"><i class="icon-users icon"></i><span>{{$t('system.userCenter')}}</span></li>
+				<li @click="_reportCenter"  v-if="hasReportCenter"><i class="icon-stats-dots icon"></i><span>{{$t('system.reportCenter')}}</span></li>
+			    <li @click="_loginout"><i class="icon-switch2  icon"></i><span>{{$t('system.loginOff')}}</span></li>
 			</ul>
-			
 		</div> 
 	</div>
   	<div class="content" >
@@ -27,12 +26,6 @@
 											<el-menu-item :index="thirdmenulist.url" v-for="(thirdmenulist,index) in secondmenulist.items" :key="index">{{thirdmenulist.displayName}}</el-menu-item>
 									</el-submenu>
 					  </el-submenu>
-					   <!-- <el-menu-item index="/apitest" class="single"><i class="icon-home"></i>API测试界面</el-menu-item> -->
-					 <!-- <el-menu-item index="/pages/comdemo" class="single"><i class="icon-home"></i>业务组件用例</el-menu-item>
-					 
-					  <el-menu-item index="/pages/test" class="single"><i class="icon-home"></i>测试界面</el-menu-item> -->
-					   <!-- <el-menu-item index="/pages/jsobjturn" class="single"><i class="icon-home"></i>js转化json</el-menu-item> -->
-					
 				</el-menu>
 			</div>
 			<div class="main-wrapper" :class="{'main-wrapper-expend':isClose}">
@@ -57,25 +50,25 @@
 				title="用户信息"
 				trigger="hover">
 				<div>
-					<span > | 当前用户： {{userInfo.user.realName}}</span>
+					<span >  当前用户： {{userInfo.user.realName}}</span>
 				</div>
 				<div>
-					<span > | 当前角色： {{userInfo.user.roleName}}</span>
+					<span >  当前角色： {{userInfo.user.roleName}}</span>
 				</div>
 				<div>
-					<span > | 组织机构： {{userInfo.user.manageOrgName}}</span>
+					<span >  组织机构： {{userInfo.user.manageOrgName}}</span>
 				</div>
 				
 				<span slot="reference"><i class="icon-user-tie icon"></i></span>
 			</el-popover>
 			<span > | 
-					<i class="icon-color-mode" style="color:#409EFF" @click="_changeTheme('theme-default')"></i>
+					<i class="icon-color-mode" style="color:#409EFF" @click="_changeTheme('default')"></i>
 					<i class="icon-color-mode" style="color:#1BD8A9" @click="_changeTheme('green')"></i>
 					<i class="icon-color-mode" style="color:#BF532A" @click="_changeTheme('orange')"></i>
 				</span>
 			<span > |
-				<el-tooltip effect="dark" :hide-after="0"	content="语言切换" placement="bottom-start" > 
-					<i class="icon-cogs icon"></i>
+				<el-tooltip effect="dark" :hide-after="0"	:content="langTxt" placement="bottom-start" > 
+					<i class="icon-earth icon"  @click="_changeLang"></i>
 				</el-tooltip>
 			</span>
 			<span > |
@@ -202,7 +195,6 @@ import { mapGetters, mapActions} from 'vuex';
 import fetch from '@/api/fetch';
 import util from '@/common/js/util';
 import screenfull from 'screenfull';
-import themePicker from '@/components/themePicker/themePicker';
 export default {
 		data(){
 			return{
@@ -231,6 +223,8 @@ export default {
 						conformpwa:''
 					},
 					hasReportCenter:'',
+					lang:localStorage.getItem('language')||'zh',
+					langTxt:localStorage.getItem('language')=='zh'?"切换为英文":"切换为中文"
 					
 			};
 		},
@@ -251,10 +245,26 @@ export default {
 			_changeTheme(name){
 				util.changeTheme(name);
 				this.$message({
-					message: '换肤成功',
+					message: '换肤成功！',
 					type: 'success'
 				})
-
+			},
+			_changeLang(){
+					 if(this.lang=='zh'){
+						 this.lang='en'
+						 this.langTxt='切换为中文'
+					 }else{
+						 this.lang='zh'
+						 this.langTxt='切换为英文'
+					 }
+					 this.$i18n.locale = this.lang;
+					 localStorage.setItem('language', this.lang);
+					this.$message({
+						message: '切换语言成功(部分页面可能需要刷新浏览器)！',
+						type: 'success'
+					})
+					 //跳转
+					window.location = getClientObj().sysConf.url+'/api/Rediect/rediect?url='+location.href;
 			},
 			_menuClick(){
 				this.menudDisplay=!this.menudDisplay
@@ -389,7 +399,7 @@ export default {
 			_fullScreen(){
 				 if (!screenfull.enabled) {
 						this.$message({
-						message: 'you browser can not work',
+						message: '浏览器不支持全屏设置！',
 						type: 'warning'
 						})
 						return false
@@ -470,15 +480,13 @@ export default {
 			 ...mapActions(['setIsVisible',]),
       },
 	  components:{
-			screenfull,
-			themePicker
+			screenfull
         },
 	mounted() {
 		this.hasReportCenter=util.getCookieValue('hasReportCenter');
 		this._getMenu();
 		this._initLock();
 		this.checkModule(this.$route.name);
-		
 	},
 	watch: {
 		getIsVisible:function(val, oldVal){
@@ -511,7 +519,6 @@ export default {
 		width 100%
 		display flex
 		flex-direction row
-		background-color #1f2d3d
 		.left
 			width 70%
 			display flex
@@ -601,10 +608,6 @@ export default {
 			.dynamicmodel
 				height:100%
 				overflow:auto
-				.fade-enter-active,.fade-leave-active
-					transition: opacity 0s
-				.fade-enter,.fade-leave-active
-					opacity: 0
 		.main-wrapper-expend
 			left:16px
 	.foot

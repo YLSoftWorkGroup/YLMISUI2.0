@@ -5,6 +5,9 @@
         v-for="(item,index) in option.elmentConfig" :key="index"
         v-if="row[option.name]===item.value"
         v-text="item.text"
+        :size="item.size"
+        :color="item.color"
+        :hit="item.hit"
         :type="item.type"
      >
      </el-tag>

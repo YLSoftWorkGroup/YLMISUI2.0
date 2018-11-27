@@ -1,5 +1,23 @@
 import Vue from 'vue'
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap);
 
+//初始化地图组件
+VueAMap.initAMapApiLoader({
+    key: '6ee9a3644c56a3b842a2ac09d3b2b24d',
+    plugin: ['AMap.Autocomplete',
+              'AMap.PlaceSearch', 
+              'AMap.Scale', 
+              'AMap.OverView', 
+              'AMap.ToolBar',
+              'AMap.MapType',
+              'AMap.PolyEditor',
+              'AMap.CircleEditor',
+              'AMap.Geocoder',
+              'AMap.Geolocation'],
+    // 默认高德 sdk 版本为 1.4.4
+    v: '1.4.4'
+  });
 
 //通用工具组件
 import lazyRender from './lazyrender/lazyRender'

@@ -1,0 +1,21 @@
+
+/*主色*/
+.color-primary {color:#409EFF;}
+.background-color-primary {color:#409EFF;}
+/*自定义色*/
+.main-background,.header-background,.footer-background{background-color:#1F2D3D;}
+.header-left-text-color {color:#ddd;}
+.main-text-color,.main-static-color {color:#ddd;}
+.main-text-color:hover {color:#409EFF;}
+.menu-border {border:1px solid #41516a;}
+.menu-background {background-color:#324057;}
+.el-submenu__title,.el-menu-item,.el-submenu__title i{color:#ddd;}
+.el-menu {background-color: #324057;border:none;}
+.el-submenu-main >.el-submenu__title{border-top: 1px solid #3a475c;border-bottom: 1px solid #27364f;}
+.el-submenu-main >.el-submenu__title:hover,.el-menu-item:hover{background:#1F2D3D;border-left:3px #409EFF solid;}
+.el-submenu .el-menu{background-color:#2c3c56;}
+.el-submenu-main.el-submenu.is-active> .el-submenu__title{border-left:3px #409EFF solid;background:#1F2D3D;border-bottom: 1px solid #27364f;}
+.el-menu-item:focus,.el-menu-item:hover{background-color: #65768c;} 
+.page-background {background-color:#324057;}
+.page-border {border:1px solid #41516a;}
+.tabPanel-item-active{ background-color:#409EFF!important;color: #fff !important;border-color:#409EFF !important;}

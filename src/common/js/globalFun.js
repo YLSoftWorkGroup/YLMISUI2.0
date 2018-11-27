@@ -391,3 +391,12 @@ Vue.prototype.getLocalOrgId=function (){
       }     
      
 }
+
+//获取当前模块对象属性
+
+Vue.prototype.getMenuInfo=function (){
+     let o=localStorage.getItem('currentRouter');
+     if(o){
+           return JSON.parse(o)
+     }
+}

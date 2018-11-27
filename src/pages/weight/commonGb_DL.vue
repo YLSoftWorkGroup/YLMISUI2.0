@@ -227,8 +227,21 @@
                         </el-row>
                         <el-row>
                           
-                               
-                            <el-col :span="24">
+                                <el-col :span="6">
+                                    <el-form-item label="加工中心" prop="o_Col61">
+                                            <yl-commonselect ref="commonselect" 
+                                                style="width:100%"
+                                                v-model="formModel.order.o_Col61" 
+                                                size="small"
+                                                placeholder="请选择钢筋加工中心"
+                                                :initData="jgzxConf.dataList"
+                                                :defaultProps="jgzxConf.defaultProps"
+                                                 @clear="_ClearJgzx"
+                                                @getCurrentNode="_getJgzxChange">
+                                        </yl-commonselect> 
+                                    </el-form-item> 
+                            </el-col>
+                            <el-col :span="18">
                                 <el-form-item label="备注信息" prop="orderRemark">
                                         <input type="text" class="inputtext"  v-model="formModel.order.orderRemark" name="orderRemark" >
                                         <!-- <el-input v-model="formModel.order.orderRemark" size="small" ></el-input> -->
@@ -442,11 +455,19 @@ export default {
               },
               dataList:[],
                 },
+            jgzxConf:{
+                defaultProps: {
+                        text:"v_Col6",
+                        value:"id"
+              },
+              dataList:[],
+                },
             bakUpData:{
                 carNumConf:{},
                 supplierConf:{},
                 materialConf:{},
-                LcConf:{}
+                LcConf:{},
+                jgzxConf:{}
                 },
             saveBtnState:false,
             cancelBtnState:true,
@@ -492,6 +513,7 @@ export default {
                     b_Col29:false,
                     o_Col36:'',
                     o_Col37:'',
+                    o_Col61:'',
                 },
                 items:[],
                 config:{
@@ -1537,7 +1559,27 @@ export default {
                                                             }
                                                 },'获取料仓末级信息');
             _this.bakUpData.LcConf=util.deepCopy(_this.LcConf);
+            //加载钢筋加工中心组织机构
+             _this.jgzxConf.dataList= await  _this.asyncFunc({
+                                                            url:_this.apiList.jgzxParams,
+                                                            method:'post',
+                                                            data:{
+                                                                queryConditionItem:[ 
+                                                                                    {dataField:"I_Col1",op:'EQ',dataValue:2}
+                                                                                ],
+                                                                sorting:'I_Col1'
+                                                            }
+                                                },'获取料仓末级信息');
+            _this.bakUpData.LcConf=util.deepCopy(_this.jgzxConf);
         },
+        _getJgzxChange(node){
+            this.formModel.order.o_Col61=node[0].id;
+            this.formModel.order.v_Col56=node[0].v_Col6;
+        },
+        _ClearJgzx(){
+            this.formModel.order.o_Col61='';
+            this.formModel.order.v_Col56=''
+        }
    },
    beforeMount(){
         this.setGlobString1('');

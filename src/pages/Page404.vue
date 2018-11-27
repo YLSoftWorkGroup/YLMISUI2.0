@@ -13,7 +13,7 @@
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告</div>
         <div @click="_goHome" class="bullshit__return-home">返回上一页</div>
-
+        <div @click="_login" class="bullshit__return-home">重新登录</div>
       </div>
     </div>
   </div>
@@ -35,6 +35,9 @@ export default {
         methods:{
             _goHome(){
               this.$router.go(-1);
+            },
+            _login(){
+               this.$router.replace('/login')
             },
             handleClose(){
             }

@@ -1,51 +1,22 @@
 
-.el-table {
-  position: relative;
-  overflow: hidden;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
-  background-color: #fff;
-  border: 1px solid rgb(221, 238, 231);
-  border:none;
-  font-size: 12px;
-  box-sizing: border-box;
-}
-.el-table__body tr.current-row > td
-{
-  background-color:#D3DCE6 !important; 
-  opacity: 1;
-}
-.el-table--enable-row-hover tr:hover > td {
-  background-color:#D3DCE6 !important; 
-  opacity: 1;
+
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+  background-color:#E4E7ED;
 }
 
-.el-table th{
-background-color:#fff; 
-height: 30px;
-text-align: center;
-color: #fff;
-}
-.el-table th, .el-table td{
- height: 28px;
-}
-.el-table__header-wrapper thead div{
- font-weight: 500;
-}
-.el-table__header-wrapper thead div, .el-table__footer-wrapper thead div{
-/* background: url(../src/image/th.png); */
-  background-color: #4388c9;
-  color: #fff;
+.el-table td, .el-table th{
+  padding:6px 0
 }
 
-.el-table tr{
-background-color:#fff
+.el-table--small td, .el-table--small th{
+  padding:4px 0
 }
-.el-table .cell{
-  padding-left: 10px;
-  padding-right: 10px;
-  white-space: nowrap;
+
+.el-table--striped .el-table__body tr.el-table__row--striped.current-row td, 
+.el-table__body tr.current-row>td, 
+.el-table__body tr.hover-row.current-row>td, 
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td, 
+.el-table__body tr.hover-row.el-table__row--striped>td, 
+.el-table__body tr.hover-row>td {
+  background-color:#E4E7ED;
 }

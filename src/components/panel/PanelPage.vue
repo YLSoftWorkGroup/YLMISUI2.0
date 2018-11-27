@@ -107,7 +107,7 @@ export default {
 		icon:{
 			required: false,
             type: String,
-			default:'icon-pencil2'
+			default:'fa fa-angle-right'
 			},
 		treeLoading:{
 			required: false,
@@ -207,7 +207,7 @@ export default {
 			.titleName
 				padding-left:8px
 				color:#716c6c
-				font-size:14px
+				font-size:12px
 				line-height:26px
 				i
 					padding-right:4px
@@ -224,6 +224,7 @@ export default {
 				a
 					color:#b7b7b7
 					font-size:12px
+					padding-right:3px
 					&:hover
 						color:#716c6c
 		.portlet-title-zone
@@ -241,6 +242,7 @@ export default {
 				line-height:24px
 				a
 					font-size:12px
+					padding-right:3px
 					&:hover
 						color:#716c6c
 		.portlet-body

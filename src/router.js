@@ -6,7 +6,7 @@ const Login = resolve => require(['./pages/Login.vue'], resolve);
 const ReportCenter = resolve => require(['./pages/ReportCenter.vue'], resolve);
 const Index = resolve => require(['./pages/Index.vue'], resolve);
 const RedirectPage = resolve => require(['./pages/RedirectPage.vue'], resolve);
-const Main = resolve => require(['./pages/Main.vue'], resolve);
+const Main = resolve => require(['./pages/layout/Main.vue'], resolve);
 const Home = resolve => require(['./pages/config/homepage/Home.vue'], resolve);
 const Page404 = resolve => require(['./pages/Page404.vue'], resolve);
 const MobilePageConf = resolve => require(['./pages/operation/systeminfo/mobilepageconf/MobilePageConf.vue'], resolve);
@@ -69,20 +69,12 @@ routes:[
     component: ReportCenter,
     name: '易龙报表中心',
     children: [
-      { path: 'home', component: Home, name: '首页1'  },
+      { path: 'home', component: Home, name: '首页'  },
       { path: 'videoList', component: videoList, name: '视频监控' },
       { path: 'suppermodule/:systemName/:tableName/:pageName', component: supperModule, name: '模块容器1'},
       { path: 'ordershow', component: ordershow, name: '单据查看' },
+      { path: '/redirect/:path*', component: () => import('@/pages/config/redirect/index') },
       {path: '*',component: Page404} 
-    ]
-   },
-   {
-    path: '/',  
-    component: Main,
-    redirect: 'home',
-    name: '',
-    children: [
-      { path: '/home', component: Home, name: '首页'  },
     ]
    },
    {
@@ -90,6 +82,7 @@ routes:[
     component: Main,
     name: '易龙快速开发平台',
     children: [
+          { path: 'home', component: Home, name: '门户'  },
           { path: 'apitest', component: ApiTest,name: 'api测试页面'  },
           { path: 'menuItem', component: MenuItem, name: '菜单管理' },
           { path: 'menuApp', component: MenuApp, name: '应用系统' },
@@ -131,6 +124,7 @@ routes:[
           { path: 'userSelectModuleConf', component: userSelectModuleConf, name: '自定义数据选择框' },
           { path: 'userMobilePageConf', component: userMobilePageConf, name: 'APP自定义配置' },
           { path: 'suppermodule/:systemName/:tableName/:pageName', component: supperModule, name: '模块容器'},
+          { path: '/redirect/:path*', component: () => import('@/pages/config/redirect/index') },
           {path: '*',component: Page404} 
     ]
    },

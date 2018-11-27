@@ -117,7 +117,7 @@
          </div>
     </yl-layout>
     <!--编辑界面-->
-         <el-dialog ref="mainDialog" title="编辑" v-model="addFormVisible" size="full"  top="5%" 
+         <el-dialog ref="mainDialog" title="编辑" :visible.sync="addFormVisible" fullscreen  top="5%" 
                     :modal-append-to-body="false" :close-on-click-modal="false"  >
                     <Edit :selectRow="currentRows" @close="_close" :isCopy="isCopy"  v-if="addFormVisible"></Edit>
          </el-dialog>

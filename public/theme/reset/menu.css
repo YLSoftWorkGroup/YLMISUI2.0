@@ -1,139 +1,27 @@
-.el-menu:before, .el-menu:after{
-  display: table;
-  content: "";
-}
-.el-menu:after{
-  clear: both;
-}
 
-
+.el-menu--collapse{
+  width:55px
+}
 .el-menu-item, .el-submenu__title{
   height: 40px;
   line-height: 40px;
   font-size: 12px;
-  color: #ddd;
   padding: 0px 20px;
   cursor: pointer;
   position: relative;
-  transition: border-color .3s, background-color .3s, color .3s;
   box-sizing: border-box;
   white-space: nowrap;
 }
-
-.el-menu {
-  list-style: none;
-  position: relative;
-  padding-left: 0;
-  background-color: #324057;
+.el-submenu__title i,
+.el-menu-item i{
+  padding-right:3px;
+  font-size: 12px;
 }
-.el-menu .el-submenu-main
-{
-  margin: 0px 0px;
-}
-
-.el-menu li{
-  list-style: none;
-}
-
- .el-submenu-main >.el-submenu__title{       
-  background:#324056;
-  border-top: 1px solid #3a475c;
-  border-bottom: 1px solid #27364f;
-
-	/* background-image: url(/image/menu_btn.png) ; */
-  }
-.el-submenu-main >.el-submenu__title:hover{
-  background:#262f3d;
-  border-left:3px #b6d06c solid;
-   /* background-image: url(/image/menu_btn_hover.png) ;	  */
-}
-.el-submenu-item  >.el-submenu__title{
-  
-  background-color:  #2c3c56;
-  background: url(/image/tree_hidden.png) no-repeat 25px center;
- /* border-bottom:1px #777 solid; */
-}
-.el-submenu-item >.el-submenu__title:hover{
-  color: #b6d06c;
-  background: url(/image/tree_hidden.png) no-repeat 25px center ;
-}
-
- .el-submenu-item.is-opened> .el-submenu__title{
-  background: url(/image/tree_show.png) no-repeat 25px center ;
-}
- .el-submenu-item.is-opened> .el-submenu__title:hover{
-   color: #b6d06c;
-  background: url(/image/tree_show.png) no-repeat 25px center  ;
-}
-
-.el-menu-item [class^="el-icon-"]{
-  vertical-align: baseline;
-  margin-right: 10px;
-}
-
-.el-menu-item:first-child{
-  margin-left: 0;
-
-}
-
-.el-menu-item:last-child{
-  margin-right: 0;
-  background: url(/image/tree_end.png) no-repeat 26px center,#2c3c56  !important;
-}
-.el-menu-item:last-child:hover{
-  margin-right: 0;
-  background: url(/image/tree_end_hover.png)no-repeat 26px center,#536882  !important;
-}
-.el-menu-item:hover{
-  background:#262f3d;
-  border-left:3px #b6d06c solid;
-}
-
-.el-menu-item.is-active {
-    color: #b6d06c;
-}
-
-
-
-.el-submenu .el-menu{
-  background-color:  #2c3c56;
-}
-
 .el-submenu .el-menu-item{
   height: 40px;
   line-height: 40px;
   padding: 0 45px;
-  background: url(/image/tree.png) no-repeat 26px center,#2c3c56;
 }
-.el-submenu .el-menu-item:hover {
-    color: #b6d06c;
-    background: url(/image/tree_hover.png) no-repeat 26px center,#536882;
-}
-.el-submenu-main.el-submenu.is-active> .el-submenu__title{
-  border-left:3px #b6d06c solid;
-  background:#262f3d;
-  border-bottom: 1px solid #27364f;
-}
-.el-submenu__title{
-  position: relative;
-}
-/*隐藏箭头符号*/
-.el-submenu-item .el-submenu__icon-arrow{
-  visibility:hidden  !important;
-}
-li.el-menu-item.single
-{
-	margin:0px 0px;
-}
-.el-submenu [class^="el-icon-"]{
-  vertical-align: baseline;
-  margin-right: 5px;
-}
-.el-menu-item [class^="icon-"]{
-  vertical-align: baseline;
-  margin-right: 5px;
-}
-.el-submenu [class^="icon-"]{
-  vertical-align: baseline;
-  margin-right: 5px;
-}
+
+
+

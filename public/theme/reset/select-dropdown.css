@@ -1,5 +1,14 @@
 
 .el-select-dropdown__item{
   height: 26px;
+  line-height: 1;
   padding:5px 8px;
+}
+
+.el-select-dropdown__item:hover{
+  background-color: #EBEEF5;
+  font-weight: 700;
+}
+.el-select-dropdown__item{
+  font-size: 12px;
 }

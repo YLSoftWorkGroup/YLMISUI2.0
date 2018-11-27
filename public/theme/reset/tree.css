@@ -7,8 +7,8 @@
   line-height: 0px;
 }
 .el-tree-node__content{
-  line-height: 28px;
-  height: 28px;
+  line-height: 26px;
+  height: 26px;
   cursor: default;
 }
 .el-tree-node__label{
@@ -23,7 +23,6 @@
   overflow: hidden;
   
 }
-
 .el-tree__empty-text{ 
   font-size: 12px;
 }

@@ -17,7 +17,6 @@ const state = {
     global_string1:'',
     global_string2:'',
     global_array1:[]
-
 }
 
 const actions = {
@@ -47,7 +46,7 @@ const getters = {
         getGlobObject3: status =>status.global_object3,
         getGlobString1: status =>status.global_string1,
         getGlobString2: status =>status.global_string2,
-        getGlobArray1: status =>status.global_array1,
+        getGlobArray1:  status =>status.global_array1,
 }
 
 const mutations = {

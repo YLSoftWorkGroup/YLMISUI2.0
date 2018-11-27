@@ -5,7 +5,7 @@ import com from './modules/com'
 import sel from './modules/sel'
 import item from './modules/item'
 import global from './modules/global'
-
+import routerInfo from './modules/routerInfo'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,5 +14,6 @@ export default new Vuex.Store({
         sel,
         item,
         global,
+        routerInfo,
     }
 })
