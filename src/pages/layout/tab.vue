@@ -151,47 +151,49 @@ export default {
     width 100%
     position relative
     .tabPanelScroll-item
-        display: inline-block;
-        position: relative;
-        cursor: pointer;
-        height: 22px;
-        line-height: 22px;
-        border: 1px solid #d8dce5;
-        color: #495060;
-        background: #fff;
-        padding: 0 5px;
-        font-size: 12px;
-        margin-right: 5px;
+        display: inline-block
+        position: relative
+        cursor: pointer
+        height: 22px
+        line-height: 22px
+        border: 1px solid #d8dce5
+        color: #495060
+        background: #fff
+        padding: 0 5px
+        font-size: 12px
+        margin-right: 5px
+        border-radius:4px
         &:first-of-type 
-            margin-left: 0px;
+            margin-left: 0px
         &:last-of-type 
             margin-right: 15px;
             &::before 
-                content: '';
-                background: #fff;
-                display: inline-block;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                position: relative;
-                margin-right: 2px;
+                content: ''
+                background: #fff
+                display: inline-block
+                width: 8px
+                height: 8px
+                border-radius: 50%
+                position: relative
+                margin-right: 2px
     .contextmenu 
-            margin: 0;
-            background: #fff;
-            z-index: 100;
-            position: absolute;
-            list-style-type: none;
-            padding: 5px 0;
-            font-size: 12px;
-            font-weight: 400;
-            color: #333;
-            box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+            margin: 0
+            background: #fff
+            z-index: 100
+            position: absolute
+            list-style-type: none
+            padding: 5px 0
+            font-size: 12px
+            font-weight: 400
+            color: #333
+            border-radius:4px
+            box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3)
             li 
-                margin: 0;
-                padding: 7px 16px;
-                cursor: pointer;
+                margin: 0
+                padding: 7px 16px
+                cursor: pointer
                 &:hover 
-                    background: #eee;
+                    background: #eee
             
             
 

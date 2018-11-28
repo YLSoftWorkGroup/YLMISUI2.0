@@ -1,13 +1,18 @@
 
 /*主色*/
 .color-primary {color:#1BD8A9;}
-.background-color-primary {color:#1BD8A9;}
+.color-primary-light2 {color:rbga(27,216,169,0.8);}
+.color-primary-light4 {color:rbga(27,216,169,0.6);}
+.color-primary-light6 {color:rbga(27,216,169,0.4);}
+.color-primary-light8 {color:rbga(27,216,169,0.2);}
 
 /*自定义色*/
 .main-background,.header-background,.footer-background{background-color:#333333;}
-.header-left-text-color {color:#ddd;}
+.header-left-text-color{color:#ddd;}
 .main-text-color,.main-static-color {color:#ddd;}
-.main-text-color:hover {color:#1BD8A9;}
+.main-text-color:hover{color:#1BD8A9 !important;cursor: pointer;}
+.active-color{color:#1BD8A9 !important;}
+.active-item{color:#1BD8A9 !important;border-left:3px solid  #1BD8A9 !important;background-color:rgba(27,216,169,0.2) !important}
 .menu-border {border:1px solid #999999;}
 .menu-background {background-color:#666666;}
 .el-submenu__title,.el-menu-item,.el-submenu__title i{color:#ddd;}

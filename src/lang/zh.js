@@ -8,7 +8,10 @@ export default{
                 warning:'警告',
                 error:'错误',
             },
-            
+            loading:{
+                waiting:'加载中,请稍后...',
+                waiting1:'页面渲染中，请稍后...',
+            }
         },
         mainPage:{
             header:{
@@ -26,10 +29,73 @@ export default{
                 closeOthers:'关闭其它',
                 closeAll:'关闭所有',
             },
+            menu:{
+                folding:'折叠',
+                expansion:'展开'
+            },
+            footer:{
+                advice:'客服建议',
+                lock:'锁屏',
+                lockTip:'输入密码解锁',
+                changePwa:'修改密码',
+                fullScreen:'全屏显示',
+                changePwdForm:{
+                    title:'修改密码',
+                    oldpwa:'原密码',
+                    oldpwaTip:'请输入原密码',
+                    newpwa:'新密码',
+                    newpwaTip:'请输入新密码',
+                    conformpwa:'新密码确认',
+                    conformpwaTip:'再次输入新密码',
+                    reset:'重置',
+                    sure:'确定'
+                },
+                changToCH:'切换为中文',
+                changeToEn:'切换为英文'
+            },
             message:{
-                loginOff:'确定要退出系统登录吗？'
+                loginOff:'确定要退出系统登录吗？',
+                menuLoading:'菜单加载中...',
+                screenfull:'浏览器不支持全屏设置！',
+                langChangeTip:'切换语言成功(部分页面可能需要刷新浏览器)！',
+                changeSkin:'切换皮肤成功！',
+                lockPwdTip:'请填写解锁密码！',
+                lockPwdErr:'解锁密码输入有误！',
+                oldpwaErr:'旧密码输入有误！',
+                oldpwaTip:'原始密码不能为空！',
+                newpwaTip:'新密码不能为空！',
+                conformpwaTip:'密码确认不一样！请重新输入！',
+                changeErr:'输入原始密码有误，请重新输入！',
+                changeSuccess:'修改密码成功！',
+                changeFail:'修改密码失败！',
+            }
+        },
+        index:{
+            userName:'当前用户',
+            organization:'权限范围',
+            organizationTip:'请选择权限范围',
+            role:'用户角色',
+            roleTip:'请选择用户角色'
+        },
+        login:{
+            userNameTip:'请输入用户名',
+            passwordTip:'请输入密码',
+            login:'登录',
+            reset:'重置',
+            website:'关于易龙',
+            phone:'客服电话',
+            message:{
+                userNameNotNull:'用户名不能为空！',
+                passWordNotNull:'密码不能为空！',
+                userNameErr:'用户名输入有误！',
+                passWordErr:'密码输入有误！',
+                userNoOrg:'用户没有授权权限范围！',
+                userNoRole:'用户没有授权角色！',
+                loginSuccess:'登录成功，欢迎您使用本系统...',
+                loginFail:'登录失败！',
             }
         }
+        
         
     },
     //业务配置

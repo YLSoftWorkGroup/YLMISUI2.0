@@ -35,9 +35,13 @@ export default {
     padding:8px
     display flex
     flex-direction column
+    border-radius:4px
+    position relative
     .tab
         height 26px
     .dynamicmodel
         flex 1
         overflow auto
+        border-radius:4px
+                
 </style>

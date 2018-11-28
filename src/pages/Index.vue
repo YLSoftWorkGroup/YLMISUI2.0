@@ -25,12 +25,12 @@
     <div class="body">
         <div class="userInfo">
             <div class="username row">
-                <span>当前用户：</span>{{userInfo.user.realName}}
+                <span>{{$t('system.index.userName')}}：</span>{{userInfo.user.realName}}
             </div>
             <div class="OrgList row">
-                <span>权限范围：</span>
+                <span>{{$t('system.index.organization')}}：</span>
                 <el-select  v-model="formModel.orgId"  
-                        placeholder="请选择权限范围" 
+                        :placeholder="$t('system.index.organizationTip')" 
                         style="width:230px">
                     <el-option
                         v-for="item in userInfo.userDataRanges"
@@ -41,10 +41,10 @@
                 </el-select>
             </div>
             <div class="RoleList row">
-                <span>用户角色：</span>
+                <span>{{$t('system.index.role')}}：</span>
                 <el-select  
                             v-model="formModel.roleId"  
-                            placeholder="请选择角色" 
+                            :placeholder="$t('system.index.roleTip')" 
                             style="width:230px"
                             size=""
                             @change="_roleChange"
@@ -60,7 +60,7 @@
            
         </div>
        <hr/>
-        <div class="systemList" v-loading="loading" element-loading-text="加载中，请稍后...">
+        <div class="systemList" v-loading="loading" :element-loading-text="$t('system.message.loading.waiting')">
             <div class="sysBlock" v-for="(item,index) in systemList" :key="item.id"  v-show="item.isDisplay"
                     :style="{'background-color':getcolor(index)}"
                     @click="_goSystem(item)"
@@ -95,7 +95,6 @@ export default {
             }   
     },
     components:{
-
         userConf
     },
     computed:{

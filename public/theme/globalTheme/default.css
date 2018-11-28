@@ -1,13 +1,18 @@
 
 /*主色*/
 .color-primary {color:#409EFF;}
-.background-color-primary {color:#409EFF;}
+.color-primary-light2 {color:rbga(64,158,255,0.8);}
+.color-primary-light4 {color:rbga(64,158,255,0.6);}
+.color-primary-light6 {color:rbga(64,158,255,0.4);}
+.color-primary-light8 {color:rbga(64,158,255,0.2);}
 /*自定义色*/
 .main-background,.header-background,.footer-background{background-color:#1F2D3D;}
 .header-left-text-color {color:#ddd;}
 .main-text-color,.main-static-color {color:#ddd;}
-.main-text-color:hover {color:#409EFF;}
-.menu-border {border:1px solid #41516a;}
+.main-text-color:hover {color:#409EFF !important;;cursor: pointer;}
+.active-color{color:#409EFF !important;}
+.active-item{color:#409EFF !important;border-left:3px solid  #409EFF !important;background-color:rgba(64,158,255,0.2) !important}
+.menu-border {border:1px solid #41516a;border-radius:4px;}
 .menu-background {background-color:#324057;}
 .el-submenu__title,.el-menu-item,.el-submenu__title i{color:#ddd;}
 .el-menu {background-color: #324057;border:none;}

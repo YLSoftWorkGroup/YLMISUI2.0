@@ -16,7 +16,7 @@
                  </el-form>
           </yl-toolbar>
       <el-form  :model="formModel"  :rules="rules"  ref="formModel" label-width="100px" >
-                <el-tabs  type="border-card" active-name="baseInfoConf"  >
+                <el-tabs  type="border-card" active-name="baseInfoConf"  tab-position='right'>
                         <el-tab-pane label="基本信息配置" name="baseInfoConf" style="padding:10px;box-sizing:border-box;"> 
                               <el-row >
                                     <el-col :span="6">

@@ -3,7 +3,7 @@
     <div class="left-warper  menu-border menu-background" 
     :class="{'left-width-collapse':isCollapse}"
     v-loading="menuLoading" 
-    element-loading-text="菜单加载中..." 
+    :element-loading-text="$t('system.mainPage.message.menuLoading')" 
     >
         <div class="menu-warper " >
             <el-menu  
@@ -17,16 +17,28 @@
                 :collapse="isCollapse"
                 :collapse-transition="false"
             >
-                    <el-menu-item index="/home" @click="_goToURL()"><i class="menuicon icon-home"></i><span slot="title">门 户</span></el-menu-item>
-                    <el-submenu :index="findex+'f'" class="el-submenu-main"   v-for="(fristmenulist,findex) in menuList" :key="findex"> 
-                        <template slot="title" ><i  class="menuicon" :class="fristmenulist.icon"></i><span slot="title">{{fristmenulist.displayName}}</span></template>
-                        <el-menu-item :index="secondmenulist.url"  @click="_goToURL(secondmenulist)" v-for="(secondmenulist,sindex) in fristmenulist.items" :key="sindex">{{secondmenulist.displayName}}</el-menu-item>
+                    <el-menu-item index="/home" @click="_goToURL()">
+                        <i class="menuicon icon-home"></i>
+                        <span slot="title">门 户</span>
+                    </el-menu-item>
+                    <el-submenu :index="findex+'f'" 
+                        class="el-submenu-main"   
+                        v-for="(fristmenulist,findex) in menuList" 
+                        :key="findex"> 
+                        <template slot="title" >
+                            <i  class="menuicon" :class="fristmenulist.icon"></i>
+                            <span slot="title">{{fristmenulist.displayName}}</span>
+                        </template>
+                        <el-menu-item :index="secondmenulist.url"  
+                            v-for="(secondmenulist,sindex) in fristmenulist.items" 
+                            :key="sindex"  @click="_goToURL(secondmenulist)" >{{secondmenulist.displayName}}
+                        </el-menu-item>
                     </el-submenu>
             </el-menu>
         </div>
         <div class="menu-btn  main-text-color">
 
-            <el-tooltip effect="dark" :hide-after="0"	:content="isCollapse?'展开':'折叠'" placement="bottom-start" > 
+            <el-tooltip effect="dark" :hide-after="0"	:content="isCollapse?$t('system.mainPage.menu.expansion'):$t('system.mainPage.menu.folding')" placement="bottom-start" > 
 					<i class="fa fa-chevron-circle-left"  
                         :class="{'fa-chevron-circle-right':isCollapse}" 
                     @click="_expendMenu"></i>

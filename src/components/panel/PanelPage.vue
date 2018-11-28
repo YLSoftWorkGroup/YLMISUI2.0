@@ -39,7 +39,7 @@
 				</slot>
 			</div>
 			<div  v-if="document" :class="{'document':document} " > 
-				<div class="close" @click="_close"><i class="icon-cancel3"></i></div>
+				<div class="close" @click="_close"><i class="el-icon-close"></i></div>
 				<div class="content w-e-text" v-html="helpContent"  ></div>
 			</div>
 	</div>
@@ -198,6 +198,7 @@ export default {
 		background: #fff
 		display:flex
 		flex-direction:column
+		border-radius:4px
 		box-shadow 0px 4px 2px rgba(0,0,0,0.1)
 		.portlet-title
 			height:26px
@@ -261,7 +262,7 @@ export default {
 			bottom:0px
 			width:100%
 			z-index:10000
-			border 2px #20A0FF solid
+			border 1px #fff solid
 			background:#fff
 			opacity: 0.9
 			overflow auto

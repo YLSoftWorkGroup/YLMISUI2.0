@@ -19,8 +19,8 @@
 									<span class="text">{{i.v_col11}}</span>
 								</div>
 								<ul class="thrid" > 
-									<li class="menulink" v-for="(ii,indexl) in i.children" :key="indexl"
-										@click="_goPage(ii,index+'|'+indexl)"  :class="{'itemActive':(index+'|'+indexl)===itemIndex }"
+									<li class="menulink main-text-color" v-for="(ii,indexl) in i.children" :key="indexl"
+										@click="_goPage(ii,index+'|'+indexl)"  :class="{'active-item':(index+'|'+indexl)===itemIndex }"
 										>
 										<i :class="ii.icon" class="icon"></i>
 										<span class="text">{{ii.v_col11}}</span>
@@ -237,7 +237,7 @@ export default {
 			bottom 0px
 			width 220px
 			background-color #fff
-			font-size 14px
+			font-size 12px
 			box-sizing border-box
 			box-shadow 3px 3px 2px rgba(0,0,0,.1)
 			overflow auto
@@ -280,10 +280,6 @@ export default {
 							display inline-block
 							float right
 							padding-top 10px
-						&:hover
-							color rgb(26,187,160)
-							border-left 3px solid  rgb(26,187,160)
-							background-color rgba(26,187,160,0.1)
 		.main
 			position absolute
 			z-index 0
@@ -311,10 +307,5 @@ export default {
 						font-size 14px
 						margin  0 auto
 						padding-top 200px
-
-	.itemActive
-		color rgb(26,187,160) !important
-		border-left 3px solid  rgb(26,187,160) !important
-		background-color rgba(26,187,160,0.1) !important
             
 </style>

@@ -20,22 +20,22 @@
 				</el-tooltip>
 			</span>
 			<span class="main-text-color">  
-				<el-tooltip effect="dark" :hide-after="0"	content="客服建议" placement="bottom-start" > 
+				<el-tooltip effect="dark" :hide-after="0"	:content="$t('system.mainPage.footer.advice')" placement="bottom-start" > 
 					<i class="icon-smile icon "></i>
 				</el-tooltip>
 			</span>
 			<span class="main-text-color">  
-				<el-tooltip effect="dark" :hide-after="0"	content="锁屏" placement="bottom-start" > 
+				<el-tooltip effect="dark" :hide-after="0"	:content="$t('system.mainPage.footer.lock')" placement="bottom-start" > 
 					 <i class="icon-locked icon" @click="_lockScreen"></i> 
 				</el-tooltip>
 			</span>
 			<span class="main-text-color">  
-				<el-tooltip effect="dark" :hide-after="0"	content="修改密码" placement="bottom-start" > 
+				<el-tooltip effect="dark" :hide-after="0"	:content="$t('system.mainPage.footer.changePwa')" placement="bottom-start" > 
 						<i class="icon-keyboard icon" @click="isChangePwa=true"></i>
 				</el-tooltip>
 			</span>
 			<span class="main-text-color"> 
-				<el-tooltip effect="dark" :hide-after="0"	content="全屏显示" placement="bottom-start" > 
+				<el-tooltip effect="dark" :hide-after="0"	:content="$t('system.mainPage.footer.fullScreen')" placement="bottom-start" > 
 						<i class="icon-enlarge icon" @click="_fullScreen"></i> 
 				</el-tooltip>
 			</span>
@@ -51,7 +51,7 @@
                         <el-form  :inline="true" >
                             <el-form-item style="margin-right:0px">
                                 <input style="display:none">
-                                <el-input  placeholder="请输入密码解锁"  style="width:180px" type="password" autoComplete="off"  v-model="lockPassWord" @keyup.enter.native="_resetLogin">
+                                <el-input  :placeholder="$t('system.mainPage.footer.lockTip')"  style="width:180px" type="password" autoComplete="off"  v-model="lockPassWord" @keyup.enter.native="_resetLogin">
                                     <el-button slot="append"  @click="_resetLogin"><i class="icon-unlocked2"/></el-button>
                                 </el-input>
                                 </el-form-item>
@@ -60,31 +60,31 @@
             </div>
         </div>
         <el-dialog ref="mainDialog" 
-                title="修改密码" 
+                :title="$t('system.mainPage.footer.changePwdForm.title')" 
                 :visible.sync="isChangePwa" width="30%" 
 				:modal-append-to-body="false" 
                 :close-on-click-modal="false"  >
 				<el-form   label-width="100px" status-icon>
-					<el-form-item label="原密码" >
+					<el-form-item :label="$t('system.mainPage.footer.changePwdForm.oldpwa')" >
 						<el-input  
 						v-model="pwaForm.oldpwa" 
 						type="password" 
 						autoComplete="off" 
-						:placeholder="'请输入原密码'" 
+						:placeholder="$t('system.mainPage.footer.changePwdForm.oldpwaTip')" 
 						@blur="_checkOldPwa">
 						</el-input>
 					 </el-form-item> 
-					<el-form-item label="新密码" >
-						<el-input  v-model="pwaForm.newpwa" type="password" autoComplete="off" :placeholder="'请输入新密码'"  >
+					<el-form-item :label="$t('system.mainPage.footer.changePwdForm.newpwa')" >
+						<el-input  v-model="pwaForm.newpwa" type="password" autoComplete="off" :placeholder="$t('system.mainPage.footer.changePwdForm.newpwaTip')"  >
 						</el-input>
 						</el-form-item> 
-					<el-form-item label="新密码确认" >
-						<el-input   v-model="pwaForm.conformpwa" type="password" autoComplete="off" :placeholder="'再次输入新密码'"  >
+					<el-form-item :label="$t('system.mainPage.footer.changePwdForm.conformpwa')" >
+						<el-input   v-model="pwaForm.conformpwa" type="password" autoComplete="off" :placeholder="$t('system.mainPage.footer.changePwdForm.conformpwaTip')"  >
 						</el-input>
 					</el-form-item>  
 					<el-form-item style="text-align:right;" >
-						<el-button @click="_clearpwa">重置</el-button>
-						<el-button type="primary" @click="_changePwa" >确定</el-button>
+						<el-button @click="_clearpwa">{{$t('system.mainPage.footer.changePwdForm.reset')}}</el-button>
+						<el-button type="primary" @click="_changePwa" >{{$t('system.mainPage.footer.changePwdForm.sure')}}</el-button>
 					</el-form-item>
 				</el-form>
         </el-dialog>
@@ -111,7 +111,7 @@ export default {
                     conformpwa:''
                     },
             lang:localStorage.getItem('language')||'zh',
-			langTxt:localStorage.getItem('language')=='zh'?"切换为英文":"切换为中文"
+			langTxt:localStorage.getItem('language')=='zh'?this.$t('system.mainPage.footer.changeToEn'):this.$t('system.mainPage.footer.changToCH')
         }
     },
     components:{
@@ -138,26 +138,27 @@ export default {
         _fullScreen(){
 				 if (!screenfull.enabled) {
 						this.$message({
-						message: '浏览器不支持全屏设置！',
+						message: this.$t('system.mainPage.message.screenfull'),
 						type: 'warning'
 						})
 						return false
 					}
+
 					screenfull.toggle()
 							
             },
         _changeLang(){
 					 if(this.lang=='zh'){
 						 this.lang='en'
-						 this.langTxt='切换为中文'
+						 this.langTxt=this.$t('system.mainPage.footer.changToCH');
 					 }else{
 						 this.lang='zh'
-						 this.langTxt='切换为英文'
+						 this.langTxt=this.$t('system.mainPage.footer.changeToEn');
 					 }
 					 this.$i18n.locale = this.lang;
 					 localStorage.setItem('language', this.lang);
                         this.$message({
-                            message: '切换语言成功(部分页面可能需要刷新浏览器)！',
+                            message: this.$t('system.mainPage.message.langChangeTip'),
                             type: 'success'
                         })
                      //跳转
@@ -166,7 +167,7 @@ export default {
         _changeTheme(name){
 				util.changeTheme(name);
 				this.$message({
-					message: '换肤成功！',
+					message:this.$t('system.mainPage.message.changeSkin'),
 					type: 'success'
 				})
         },
@@ -177,14 +178,14 @@ export default {
             },
             _resetLogin(){
                 if(this.lockPassWord==''){
-                        this.$message({ message: '请填写解锁密码！',type: 'warning'});
+                        this.$message({ message:this.$t('system.mainPage.message.lockPwdTip'),type: 'warning'});
                         return;
                     }
                 if(util.jsEncrypt(this.lockPassWord)===localStorage.getItem('access')){
                         this.isLock=false;
                         util.setCookie('systemLock','off',1);
                 }else{
-                    this.$message({ message: '解锁密码输入有误！',type: 'warning'});
+                    this.$message({ message:this.$t('system.mainPage.message.lockPwdErr'),type: 'warning'});
                         return;
                 }
                 
@@ -192,7 +193,7 @@ export default {
            _checkOldPwa(){
 				if(this.pwaForm.oldpwa!=''){
 					if(util.jsEncrypt(this.pwaForm.oldpwa)!==localStorage.getItem('access')){
-						this.$message.warning('旧密码输入有误！');
+						this.$message.warning(this.$t('system.mainPage.message.oldpwaErr'));
 					}
 				}
 			},
@@ -205,23 +206,23 @@ export default {
 			},
 			_changePwa(){	
 				if(this.pwaForm.oldpwa==''){
-					this.$message.warning('原始密码不能为空！');
+					this.$message.warning(this.$t('system.mainPage.message.oldpwaTip'));
 					return false
 				}
 				if(this.pwaForm.newpwa==''){
-					this.$message.warning('新密码不能为空！');
+					this.$message.warning(this.$t('system.mainPage.message.newpwaTip'));
 					return false
 				}
 				if(this.pwaForm.newpwa!=''){
 					if(this.pwaForm.newpwa!==this.pwaForm.conformpwa){
-						this.$message.warning('密码确认不一样！请重新输入！');
+						this.$message.warning(this.$t('system.mainPage.message.conformpwaTip'));
 						return false
 					}
 				}
 				//判断原始密码
 				let op=util.jsEncrypt(this.pwaForm.oldpwa);
 				if(localStorage.getItem('access')!==op){
-						this.$message.warning('输入原始密码有误，请重新输入！');
+						this.$message.warning(this.$t('system.mainPage.message.changeErr'));
 						this.pwaForm.oldpwa=''
 						return false
 				}
@@ -241,8 +242,8 @@ export default {
 						}).then(data1=>{
 							if(data1.success){
 								this.$notify({
-										title: '成功',
-										message: '修改密码成功！',
+										title: this.$t('system.message.tip.success'),
+										message:this.$t('system.mainPage.message.changeSuccess'),
 										type: 'success'
 										});
 								//写入LocalStorage
@@ -251,8 +252,8 @@ export default {
 								
 							}else{
 								this.$notify.error({
-										title: '错误',
-										message: '修改密码失败！',
+										title: this.$t('system.message.tip.error'),
+										message:this.$t('system.mainPage.message.changeFail'),
 										});
 							}
 							this._clearpwa();

@@ -1,14 +1,14 @@
 
 <template>
 <div class="panel">
-    <div class="header">
+    <div class="header header-background">
         <div class="left">
 			    <div class="logowrapper">
 					<img class="logo" src="/img/logo.png"  />
 				</div>
-				<div class="title">{{systemTitleName}}</div>
+				<div class="title header-left-text-color">{{systemTitleName}}</div>
 				<div class="org" @click="_orgSel" v-clickoutside="_hiddenBlock">
-					<p class="orgtitle">
+					<p class="orgtitle" >
 						<i class="icon-office"></i>
 						{{OrgName}} 
 						<i class="icon-chevron-down"></i>
@@ -31,24 +31,31 @@
 		</div>
 		<div class="right">
 			<ul>
-				<li @click="_loginCenter"><i class="icon-users icon"></i><span>用户中心</span></li>
-			    <li @click="_loginout"><i class="icon-switch2  icon"></i><span>注销登录</span></li>
+				<li @click="_loginCenter" class="main-text-color"><i class="icon-users icon"></i><span>用户中心</span></li>
+			    <el-popover
+                    placement="top-start"
+                    trigger="click">
+                        <userConf></userConf>
+                        <li class="userImg" slot="reference">
+                             <img :src="userImgUrl" width="40px" alt="">
+                        </li>
+			    </el-popover>
 			</ul>
 			
 		</div> 
     </div>
 	<div class="nav">
 			
-			<div class="item" @click="_gohome" :class="{'menuActive':menuIndex=='-1' }">
+			<div class="item main-text-color" @click="_gohome" :class="{'active-color':menuIndex=='-1' }">
 				<div  class="icon">
 					<i class="icon-home"></i>
 				</div>
-				<div class="text">首页</div>
+				<div class="text ">首页</div>
 			</div>
 			<div class="item" v-if="menuList.length==0">
 				加载中...
 			</div>
-			<div class="item"  :class="{'menuActive':index===menuIndex }"
+			<div class="item main-text-color"  :class="{'active-color':index===menuIndex }"
 				v-for="(i,index) in menuList" 
 				:key="index"
 				@click="_renderMenu(i,index)"
@@ -65,7 +72,7 @@
 				<div class="menu" v-if="menuShow"  :class="{'menuClose':!expendMenu}" >
 					<div class="warper">
 						<div class="menuhead">
-							<i class="icon-grid icon "></i>
+							<i class="icon-grid icon"></i>
 							<span class="text">{{secondMenuItem.name}}</span>
 							
 						</div>
@@ -77,8 +84,8 @@
 									<span class="text">{{i.name}}</span>
 								</div>
 								<ul class="thrid" > 
-									<li class="menulink" v-for="(ii,indexl) in i.items" :key="indexl"
-										@click="_goPage(ii,index+'|'+indexl)"  :class="{'itemActive':(index+'|'+indexl)===itemIndex }"
+									<li class="menulink main-text-color" v-for="(ii,indexl) in i.items" :key="indexl"
+										@click="_goPage(ii,index+'|'+indexl)"  :class="{'active-item':(index+'|'+indexl)===itemIndex }"
 										>
 										<i :class="ii.icon" class="icon"></i>
 										<span class="text">{{ii.name}}</span>
@@ -86,16 +93,16 @@
 									</li>
 								</ul>
 							</li>
-  
 						</ul>
 					</div>
-					<div class="expendBtn" @click="_expendMenu" :class="{'closeBtn':!expendMenu}" >
+					<div class="expendBtn active-color" @click="_expendMenu">
+						<i class="fa fa-angle-double-left" :class="{'fa-angle-double-right':!expendMenu}" ></i>		
 				 	</div>
 				</div>
 			     
 				<!-- 内容填充区域 -->
 				<div class="main" :class="{'mainEx':!(expendMenu&menuShow)}" >
-						<transition name="fade" >
+						<transition name="el-fade-in-linear" >
 								<router-view></router-view>
 						</transition>
 				</div>
@@ -109,6 +116,7 @@ import fetch from '@/api/fetch.js';
 import treeMixn from '@/mixns/tree.js';
 import { requestGetUserMenu } from '@/api/login';
 import {requestGetOrganizeTreeListByParent} from '@/api/organize'
+import userConf from './layout/userConf';
 export default {
 	mixins: [treeMixn],
     data(){
@@ -133,25 +141,23 @@ export default {
 				expendMenu:true,
 				
             }   
+	},
+	components:{
+        userConf
     },
     computed:{
+		userImgUrl:{
+                get(){
+                    if(this.getUserInfo().user.gender=='男'){
+                        return './img/boy.png';
+                    }else{
+                        return './img/gril.png';
+                    }
+                }
+            }
     },
     methods:{
         //注销登录
-		  _loginout(){
-		        this.$confirm('确认退出系统吗?', '提示', {
-		          type: 'warning'
-		        }).then(() => {
-                        //清空 localstorage、cookie
-                        util.resetLogin();
-                        if(!getClientObj().loginType){
-                             this.$router.replace('/login');
-                        }else{
-                           window.location =getClientObj().singleLogin.url+'/cas/logout?service='+ getClientObj().singleLogin.url+'/cas/login?service='+getClientObj().sysConf.url+'/api/Cas';
-                        }
-		        }).catch(() => {
-		        });
-		  },
 		  _loginCenter(){
 			  this.$router.replace('/Index');
 		  },
@@ -217,7 +223,6 @@ export default {
 		  _expendMenu(){
 			  this.expendMenu=!this.expendMenu;
 		  },
-		 
 		  _renderMenu(i,index){
 			  this.menuIndex=index;
 			  if(i.url!=''){
@@ -279,8 +284,6 @@ export default {
 			  this.getSystemConf();
 		  },
 	},
-	components:{
-	},
     mounted(){
 		this.init();
 	},
@@ -299,14 +302,12 @@ export default {
 	width 100%
 	height 100%
 	display flex
-	background-color #e1e5ea
 	flex-direction column
 	.header
 		height 55px
 		width 100%
 		display flex
 		flex-direction row
-		background-color #1f2d3d
 		.left
 			width 70%
 			display flex
@@ -318,11 +319,9 @@ export default {
 			position relative
 			.logo
 				height 45px
-				width 55px
 			.title
 				font-size 20px
 				font-family SimSun
-				color #fdf5f5
 				font-weight 500
 				height 45px
 				line-height  45px
@@ -366,7 +365,6 @@ export default {
 					width:60px
 					height:52px
 					display: inline-block
-					color: #B2B2B2
 					text-align:center
 					padding-top:5px
 					.icon 
@@ -379,8 +377,6 @@ export default {
 						font-size:12px
 				li:hover
 					cursor pointer
-					color #b6d06c
-					background-color #475669
 	.nav
 		height 55px
 		width 100%
@@ -400,8 +396,6 @@ export default {
 			.text
 				font-size 12px
 				padding-top 3px
-			&:hover
-				color #3c99d5
 			
 	.body
 		flex 1
@@ -416,16 +410,18 @@ export default {
 			bottom 10px
 			width 220px
 			display flex
+			border-radius:4px
 			.expendBtn
-				background url(/img/closeMenu.png) no-repeat center
-				width 10px
+				width 12px
 				cursor pointer
-			.closeBtn
-				background url(/img/expendMenu.png) no-repeat center
+				text-align center
+				i 	
+					padding-top 300px
+
 			.warper
 				flex 1
 				background-color #fff
-				font-size 14px
+				font-size 12px
 				box-sizing border-box
 				box-shadow 3px 3px 2px rgba(0,0,0,.1)
 				overflow auto 
@@ -450,6 +446,8 @@ export default {
 						cursor auto
 						overflow hidden
 						text-overflow ellipsis
+						i 	
+							padding-right 3px
 					.thrid
 						width 100%
 						.menulink
@@ -468,10 +466,6 @@ export default {
 								display inline-block
 								float right
 								padding-top 10px
-							&:hover
-								color #3c99d5
-								border-left 3px solid  #3c99d5
-								background-color rgba(5,90,158,0.1)
 		.menuClose
 			left -210px
 		.main
@@ -486,12 +480,6 @@ export default {
 		.mainEx
 			left 10px
 
-	.menuActive
-		color #3c99d5 !important
-	.itemActive
-		color #3c99d5 !important
-		border-left 3px solid  #3c99d5 !important
-		background-color rgba(5,90,158,0.1) !important
 
 			
 

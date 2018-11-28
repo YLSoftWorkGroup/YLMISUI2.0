@@ -11,28 +11,29 @@
 			<div class="loginform">
 				<el-form class="loginlay" :model="LoginForm" status-icon :rules="formRules" ref="LoginForm" label-width="0px" label-position="left">
 					<el-form-item  prop="userName" >
-							<el-input v-model="LoginForm.userName" size="medium"  :placeholder="$t('system.login.userNameTip')" style="width:270px">
+							<el-input v-model="LoginForm.userName" size="medium"  placeholder="请输入用户名" style="width:270px">
 								<template slot="prepend"><i class="icon-user-tie"></i></template>
 							</el-input>
 						</el-form-item>
 						<el-form-item  prop="passWord">
-							<el-input v-model="LoginForm.passWord" size="medium" :placeholder="$t('system.login.passwordTip')" @keyup.enter.native="_handleSubmit"  type="password" style="width:270px">
+							<el-input v-model="LoginForm.passWord" size="medium" placeholder="请输入密码" @keyup.enter.native="_handleSubmit"  type="password" style="width:270px">
 								<template slot="prepend"><i class="el-icon-more"></i></template>
 							</el-input>
 						</el-form-item>
 						<el-form-item >
+						<el-checkbox v-model="LoginForm.rememberpwd"></el-checkbox> <span>记住密码</span>
 						</el-form-item>
 						<el-form-item>
-							<el-button type="primary" size="large" @click="_handleSubmit" :loading="loading" >{{$t('system.login.login')}}</el-button>
-							<el-button @click="_handleReset" size="large" >{{$t('system.login.reset')}}</el-button>
+							<el-button type="primary" size="large" @click="_handleSubmit" :loading="loading" >登录</el-button>
+							<el-button @click="_handleReset" size="large" >重置</el-button>
 						</el-form-item>
 					</el-form>
 			</div>
 		</div>
 		<div class="foot">
 			<div class="about-warpper"  v-if="companyInfo">
-				<a class="about-item" href="http://www.yearrow.com">{{$t('system.login.website')}}</a>
-				<a class="about-item">{{$t('system.login.phone')}}:029-88227793</a>
+				<a class="about-item" href="http://www.yearrow.com">关于易龙</a>
+				<a class="about-item">客服电话:029-88227793</a>
 			</div>
 		</div>
 	</div>
@@ -62,10 +63,10 @@ export default {
 				systemTitleName:getClientObj().sysConf.titleName,
 				formRules:{
 					userName: [
-						{ required: true, message: this.$t('system.login.message.userNameNotNull'), trigger: 'blur' }
+						{ required: true, message: '用户名不能为空！', trigger: 'blur' }
 					],
 					passWord: [
-						{ required: true, message: this.$t('system.login.message.passWordNotNull'), trigger: 'blur' }
+						{ required: true, message: '密码不能为空！', trigger: 'blur' }
 					],
 				}
 			  }
@@ -91,15 +92,15 @@ export default {
 									let result=data.data;
 									if(result.error!==undefined){
 										if(result.error==="InvalidUserName"){
-											this.$message.warning(this.$t('system.login.message.userNameErr'));
+											this.$message.warning('用户名输入有误！');
 										}else if(result.error==="InvalidPassword"){
-											this.$message.warning(this.$t('system.login.message.passWordErr'));
+											this.$message.warning('密码输入有误！');
 										}else if(result.error==="InvalidOrgId"){
-											this.$message.warning(this.$t('system.login.message.userNoOrg'));
+											this.$message.warning('用户没有授权权限范围！');
 										}else if(result.error==="InvalidRoleId"){
-											this.$message.warning(this.$t('system.login.message.userNoRole'));
+											this.$message.warning('用户没有授权角色！');
 										}else{
-											this.$message.error(result.error);
+											this.$message.error('登录有误:'+result.error);
 										}
 										this.LoginForm.passWord='';
 									}else{
@@ -110,12 +111,12 @@ export default {
 														if(data.success){
 															util.setCookie('userInfo',JSON.stringify(data.result),1);
 															
-															this.$message({message: this.$t('system.login.message.loginSuccess'),type: 'success'});
+															this.$message({message: '登录成功，欢迎您使用本系统...',type: 'success'});
 															this.$router.replace('/Index');
 														}
 											});
 										} else {
-											this.$message.error(this.$t('system.login.message.loginFail'));
+											this.$message.error('登录失败！');
 											this.LoginForm.passWord='';
 										}
 									}
@@ -152,12 +153,11 @@ export default {
 	display:flex
 	flex-direction:column
 	.header
-		padding-left:26px
+		margin-left:26px
 		height:85px
 		display flex
 		flex-direction row
 		padding-top:20px
-		background-color rgba(0,0,0,0.6)
 		.logo
 			height:65px
 		.title	
@@ -199,7 +199,6 @@ export default {
 		height:35px
 		text-align:center
 		padding-top:10px
-		background-color rgba(0,0,0,0.6)
 		.about-warpper>.about-item
 				font-size:12px
 				margin:0px  5px 

@@ -13,7 +13,7 @@
             </div>
             <div class="timepick">
                 <i class="icon-arrow-left3" @click="_back"></i>
-                <yl-datepicker style="width:170px"
+                <el-date-picker style="width:180px"
                     class="date"
                     v-model="beginDate"
                     :type="dataPickOptions.type"
@@ -22,8 +22,8 @@
                     :size="dataPickOptions.size"
                     placeholder="开始日期"
                     @change="_beginChange">
-                 </yl-datepicker>
-                 <yl-datepicker style="width:170px"
+                 </el-date-picker>
+                 <el-date-picker style="width:180px"
                     class="date"
                     v-model="endDate"
                     :type="dataPickOptions.type"
@@ -33,7 +33,7 @@
                     placeholder="结束日期"
                     @change="_endChange"
                     >
-                 </yl-datepicker>
+                 </el-date-picker>
                   <i class="icon-arrow-right3" @click="_forward"></i>
             </div>
      </yl-toolbar>
@@ -207,10 +207,11 @@ export default {
         padding-left 150px
         i 
             color #707070
+            padding 0px 5px
             &:hover
                 cursor pointer
         .date
-            width 150px
+            width 160px
 </style>
 
 

@@ -1,6 +1,6 @@
 <template>
 <div>
-<el-form  :model="formModel"  :rules="rules" status-icon  ref="formModel" label-width="100px" >
+<el-form  :model="formModel"  :rules="rules" status-icon   ref="formModel" label-width="100px" >
  <el-form-item label="应用代码" prop="appCode">
       <el-input v-model="formModel.appCode" ></el-input>
   </el-form-item>

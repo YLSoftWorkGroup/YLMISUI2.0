@@ -148,7 +148,7 @@
 
 
     <!--日期>-->
-     <yl-datepicker ref="datePicker"
+     <el-date-picker ref="datePicker"
         v-else-if="option.type==='datePicker'" 
          v-model="model[option.name]" 
         :type="option.elmentConfig.type"
@@ -163,7 +163,7 @@
         :style="option.elmentConfig.style"
         @change="_change"
       >
-    </yl-datepicker>   
+    </el-date-picker>   
 
  <!--时间选择器-->
      <el-time-picker ref="timePicker"
