@@ -1,6 +1,6 @@
 
 <template>
-<div class="panel">
+<div class="panel" >
     <div class="header header-background">
         <div class="left">
 			    <div class="logowrapper">
@@ -22,7 +22,7 @@
 			
 		</div> 
     </div>
-    <div class="body">
+    <div class="body" v-loading="loading" :element-loading-text="$t('system.message.loading.waiting')">
         <div class="userInfo">
             <div class="username row">
                 <span>{{$t('system.index.userName')}}：</span>{{userInfo.user.realName}}
@@ -60,7 +60,7 @@
            
         </div>
        <hr/>
-        <div class="systemList" v-loading="loading" :element-loading-text="$t('system.message.loading.waiting')">
+        <div class="systemList" >
             <div class="sysBlock" v-for="(item,index) in systemList" :key="item.id"  v-show="item.isDisplay"
                     :style="{'background-color':getcolor(index)}"
                     @click="_goSystem(item)"

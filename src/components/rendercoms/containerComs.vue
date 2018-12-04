@@ -130,6 +130,28 @@
    >
    </yl-echarts>
 
+    <!-- 实时分页表格组件 -->
+      <yl-table ref="queryTable"
+            v-else-if="option.type==='queryTable'" 
+            @reload="_method1"
+            @loading="_loading"
+            :configs="option.elmentConfig.tableInfoConf"
+            :tableData="option.elmentConfig.tableData" 
+            :pagination="option.elmentConfig.pagination" 
+            :tableloading="option.elmentConfig.tableloading"
+            :style="option.elmentConfig.style" 
+            >
+            <template :slot="item.name" scope="scope" v-for="(item,index) in option.elmentConfig.tableInfoConf.solSlotConf"> 
+                    <yl-tableSlotComs 
+                        :key="index"
+                        :option="item" 
+                        :row="scope.row" 
+                        :name="item.name"
+                        @tableSlotEvent="_tableSlotEvent"
+                        >
+                    </yl-tableSlotComs>
+            </template>
+    </yl-table>
 
     <!-- 后分页表格组件 -->
       <yl-tableR ref="queryTableR"

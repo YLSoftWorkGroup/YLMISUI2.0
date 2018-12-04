@@ -62,6 +62,8 @@ export default {
     resetLogin:function(){
                 this.clearAllCookie();
                 this.clearLocalStorage();
+                this.clearSessionStorage();
+
     },
     setLogin:function(token){
                 this.setCookie('Authorization',"Bearer " +token,1);
@@ -157,6 +159,11 @@ export default {
     clearLocalStorage:function () 
     {
         localStorage.clear();
+    },
+    //清楚所有
+    clearSessionStorage:function () 
+    {
+        sessionStorage.clear();
     },
 
     //将平行数据根据子父节点处理为树形数据

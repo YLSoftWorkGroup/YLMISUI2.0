@@ -94,6 +94,64 @@
             this.input.skipCount=this.input.maxResultCount*(val-1)
             this.$emit('reload')
         },
+        renderItem(columns,columnDefaultAttr){
+            return columns.map((column,index)=>{
+                const columnAttr = Object.assign({}, columnDefaultAttr, column.attr)
+                if(column.isParent){
+                    //父节点
+                    return   <el-table-column
+                                label={columnAttr.label}
+                                render-header={columnAttr.renderHeader}
+                                resizable={columnAttr.resizable}
+                                formatter={columnAttr.formatter}
+                                header-align={columnAttr.headerAlign}
+                                class-name={columnAttr.className}
+                                label-class-name={columnAttr.labelClassName}
+                            >
+                                {
+                                 this.renderItem(column.items,columnDefaultAttr)
+                                }
+                            </el-table-column>
+                    }else{
+                        //子节点
+                        return <el-table-column
+                                type={columnAttr.type}
+                                index={columnAttr.index}
+                                column-key={columnAttr.columnKey}
+                                label={columnAttr.label}
+                                prop={columnAttr.prop}
+                                width={columnAttr.width}
+                                min-width={columnAttr.minWidth}
+                                fixed={columnAttr.fixed}
+                                render-header={columnAttr.renderHeader}
+                                sortable={columnAttr.sortable}
+                                sort-method={columnAttr.sortMethod}
+                                sort-by={columnAttr.sortBy}
+                                sort-orders={columnAttr.sortOrders}
+                                resizable={columnAttr.resizable}
+                                formatter={columnAttr.formatter}
+                                show-overflow-tooltip={columnAttr.showOverflowTooltip}
+                                align={columnAttr.align}
+                                header-align={columnAttr.headerAlign}
+                                class-name={columnAttr.className}
+                                label-class-name={columnAttr.labelClassName}
+                                selectable={columnAttr.selectable}
+                                reserve-selection={columnAttr.reserveSelection}
+                                filters={columnAttr.filters}
+                                filter-placement={columnAttr.filterPlacement}
+                                filter-multiple={columnAttr.filterMultiple}
+                                filter-method={columnAttr.filterMethod}
+                                filtered-value={columnAttr.filterValue}
+                                >
+                                    {
+                                        columnAttr.scopedSlot ? this.$scopedSlots[columnAttr.scopedSlot] : ''
+                                    }
+                                </el-table-column>
+                    }
+                
+                })  
+            },
+
     },
     mounted(){
     },
@@ -118,7 +176,7 @@
                                 stripe={tableAttr.stripe}
                                 border={tableAttr.border}
                                 size={tableAttr.size}
-                                fit={tableAttr.fit}
+                                fit={tableAttr.fit}   
                                 show-header={tableAttr.showHeader}
                                 highlight-current-row={tableAttr.highlightCurrent}
                                 current-row-key={tableAttr.currentRowKey}
@@ -159,43 +217,8 @@
                                 on-header-dragend={this.handleEvent('header-dragend')}
                                 on-expand-change={this.handleEvent('expand-change')}
                                 >
-                                    {
-                                        columns.map((column) => {
-                                        const columnAttr = Object.assign({}, columnDefaultAttr, column.attr)
-                                        return <el-table-column
-                                            type={columnAttr.type}
-                                            index={columnAttr.index}
-                                            column-key={columnAttr.columnKey}
-                                            label={columnAttr.label}
-                                            prop={columnAttr.prop}
-                                            width={columnAttr.width}
-                                            min-width={columnAttr.minWidth}
-                                            fixed={columnAttr.fixed}
-                                            render-header={columnAttr.renderHeader}
-                                            sortable={columnAttr.sortable}
-                                            sort-method={columnAttr.sortMethod}
-                                            sort-by={columnAttr.sortBy}
-                                            sort-orders={columnAttr.sortOrders}
-                                            resizable={columnAttr.resizable}
-                                            formatter={columnAttr.formatter}
-                                            show-overflow-tooltip={columnAttr.showOverflowTooltip}
-                                            align={columnAttr.align}
-                                            header-align={columnAttr.headerAlign}
-                                            class-name={columnAttr.className}
-                                            label-class-name={columnAttr.labelClassName}
-                                            selectable={columnAttr.selectable}
-                                            reserve-selection={columnAttr.reserveSelection}
-                                            filters={columnAttr.filters}
-                                            filter-placement={columnAttr.filterPlacement}
-                                            filter-multiple={columnAttr.filterMultiple}
-                                            filter-method={columnAttr.filterMethod}
-                                            filtered-value={columnAttr.filterValue}
-                                        >
-                                            {
-                                                columnAttr.scopedSlot ? this.$scopedSlots[columnAttr.scopedSlot] : ''
-                                            }
-                                        </el-table-column>
-                                            })
+                                    { 
+                                    this.renderItem(columns,columnDefaultAttr)
                                     }
                         </el-table>
                     </div>

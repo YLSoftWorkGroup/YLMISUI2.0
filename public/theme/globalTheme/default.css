@@ -1,10 +1,11 @@
 
 /*主色*/
 .color-primary {color:#409EFF;}
-.color-primary-light2 {color:rbga(64,158,255,0.8);}
-.color-primary-light4 {color:rbga(64,158,255,0.6);}
-.color-primary-light6 {color:rbga(64,158,255,0.4);}
-.color-primary-light8 {color:rbga(64,158,255,0.2);}
+.background-primary {background-color:#409EFF;}
+.color-primary-light1 {color:rbga(64,158,255,0.8);}
+.color-primary-light2 {color:rbga(64,158,255,0.6);}
+.color-primary-light3 {color:rbga(64,158,255,0.4);}
+.color-primary-light4 {color:rbga(64,158,255,0.2);}
 /*自定义色*/
 .main-background,.header-background,.footer-background{background-color:#1F2D3D;}
 .header-left-text-color {color:#ddd;}

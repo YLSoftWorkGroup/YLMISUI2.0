@@ -2,7 +2,7 @@
 <div class="form">
     <el-row class="yl-order-header" v-if="formConf.formHeader.isShow">
       <el-col :span="2">
-        <img src="img/zgztlogo.png" alt="logo" class="yl-order-logo">
+        <img src="img/logo.png" alt="logo" class="yl-order-logo">
         </el-col>
       <el-col :span="18" > 
         <div class="yl-order-title">
@@ -89,7 +89,6 @@ import { mapGetters,mapActions } from 'vuex';
          extensionObj:{},
          repeatFileds:'',
          repeatValue:''
-         
       };
     },
     props:{

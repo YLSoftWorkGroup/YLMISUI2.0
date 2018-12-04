@@ -94,6 +94,15 @@ export default{
                 loginSuccess:'登录成功，欢迎您使用本系统...',
                 loginFail:'登录失败！',
             }
+        },
+        reportCenter:{
+            index:'首页',
+            loading:'加载中...',
+            dataReportCenter:'数据报表中心',
+            message:{
+                routeNull:'该模块路由地址为空！',
+                dataFail:'获取数据失败',
+            }
         }
         
         

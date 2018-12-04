@@ -31,7 +31,7 @@
 		</div>
 		<div class="right">
 			<ul>
-				<li @click="_loginCenter" class="main-text-color"><i class="icon-users icon"></i><span>用户中心</span></li>
+				<li @click="_loginCenter" class="main-text-color"><i class="icon-users icon"></i><span>{{$t('system.mainPage.header.userCenter')}}</span></li>
 			    <el-popover
                     placement="top-start"
                     trigger="click">
@@ -50,10 +50,10 @@
 				<div  class="icon">
 					<i class="icon-home"></i>
 				</div>
-				<div class="text ">首页</div>
+				<div class="text ">{{$t('system.reportCenter.index')}}</div>
 			</div>
 			<div class="item" v-if="menuList.length==0">
-				加载中...
+				{{$t('system.reportCenter.loading')}}
 			</div>
 			<div class="item main-text-color"  :class="{'active-color':index===menuIndex }"
 				v-for="(i,index) in menuList" 
@@ -198,8 +198,8 @@ export default {
 						if(data.success){
 							resolve(data.result);
 						}
-						else {
-							this.$message.error('获取数据失败！');
+						else {   
+							this.$message.error(this.$t('system.reportCenter.message.dataFail'));
 						}
 				})
             }
@@ -240,7 +240,7 @@ export default {
 						this.menuShow=true;
 
 				  }else{
-					   this.$message.warning('该模块路由地址为空！');
+					   this.$message.warning(this.$t('system.reportCenter.message.routeNull'));
 				  }
 			  }
 		  },
@@ -279,7 +279,7 @@ export default {
 						this.menuShow=true;
 					}
 			  }
-			  document.title='数据报表中心';
+			  document.title=this.$t('system.reportCenter.dataReportCenter');
 			  this._getMenu();
 			  this.getSystemConf();
 		  },

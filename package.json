@@ -26,7 +26,6 @@
     "lodash": "^4.17.4",
     "echarts": "^4.0.4",
     "jsoneditor": "5.8.2",
-    "simplemde": "1.11.2",
     "font-awesome": "^4.7.0",
     "driver.js": "0.5.2"
   },

@@ -14,19 +14,19 @@
                         <div slot="fristbox" >
                               <el-form :inline="true" >
                                    <yl-timebar v-if="filterFormConf.timebar"
-                                        :format="filterFormConf.timebar.format"
-                                        :dataPickOptions="filterFormConf.timebar.dataPickOptions"
-                                        :btnItems="filterFormConf.timebar.btnItems"
-                                        :currentValue="filterFormConf.timebar.currentValue"
-                                        @click="_timeBarEvent"
-                                        @init="_timeBarInit"
-                                        ref="timeBar"
+                                            :format="filterFormConf.timebar.format"
+                                            :dataPickOptions="filterFormConf.timebar.dataPickOptions"
+                                            :btnItems="filterFormConf.timebar.btnItems"
+                                            :currentValue="filterFormConf.timebar.currentValue"
+                                            @click="_timeBarEvent"
+                                            @init="_timeBarInit"
+                                            ref="timeBar"
                                    >
                                    </yl-timebar>
                                 <yl-toolbar v-if="baseInfoConf.layout.columnlay.upToolFilter.visiable">
                                  <!--过滤器-->
                                         <el-form-item class="form-content-vertical" v-for="(item,index) in filterFormConf.up" :key="index">
-                                                 <yl-rendercoms  
+                                                <yl-rendercoms  
                                                         :option="item" 
                                                         :model="searchModel"
                                                         :refList="refList"
@@ -49,7 +49,7 @@
                                               </el-button>
                                          </el-form-item>
                                           <el-form-item class="form-content-vertical" v-if="functionConf.excelBtn">
-                                              <el-button 
+                                               <el-button 
                                                     v-show="functionConf.excelBtn.isShow"
                                                     :disabled="functionConf.excelBtn.disabled"  
                                                     :type="functionConf.excelBtn.type" 
@@ -97,25 +97,25 @@
                         <div slot="secondbox" class="flexbox" >
                          <!--表显示区域-->
                               <yl-table ref="mainTable"
-                                    @reload="_reload"
-                                    @current-change="_currentChange"
-                                    @selection-change="_selectionChange"
-                                    @row-click="toggleRowSelection"
-                                    :configs="tableInfoConf" 
-                                    :input="mainInput.inputModel"
-                                    :tableloading="mainTableLoading"
-                                    :pagination="tableInfoConf.pagination" 
-                                    >
-                                        <template :slot="item.name" scope="scope" v-for="(item,index) in tableInfoConf.solSlotConf" > 
-                                                <yl-tableSlotComs 
-                                                    :key="index"
-                                                    :option="item" 
-                                                    :row="scope.row" 
-                                                    :name="item.name"
-                                                    @tableSlotEvent="_tableSlotEvent"
-                                                    >
-                                                </yl-tableSlotComs>
-                                        </template>
+                                        @reload="_reload"
+                                        @current-change="_currentChange"
+                                        @selection-change="_selectionChange"
+                                        @row-click="toggleRowSelection"
+                                        :configs="tableInfoConf" 
+                                        :input="mainInput.inputModel"
+                                        :tableloading="mainTableLoading"
+                                        :pagination="tableInfoConf.pagination" 
+                              >
+                                    <template :slot="item.name" scope="scope" v-for="(item,index) in tableInfoConf.solSlotConf" > 
+                                            <yl-tableSlotComs 
+                                                :key="index"
+                                                :option="item" 
+                                                :row="scope.row" 
+                                                :name="item.name"
+                                                @tableSlotEvent="_tableSlotEvent"
+                                                >
+                                            </yl-tableSlotComs>
+                                    </template>
                                 </yl-table>
                         </div>
                     </yl-layout> 
@@ -123,7 +123,7 @@
                 <!--编辑界面-->
                         <el-dialog ref="mainDialog" 
                                 v-if="formConfs.dialogConf"
-                                v-model="addFormVisible" 
+                                :visible.sync="addFormVisible" 
                                 :before-close="_dynamicformBeforeClose"
                                 :size="formConfs.dialogConf.size"  
                                 :top="formConfs.dialogConf.top"
@@ -147,7 +147,7 @@
 
                     <!--动态容器-->
                     <el-dialog ref="itemDialog" 
-                            v-model="itemFormVisible"
+                            :visible.sync="itemFormVisible"
                             :title="itemConf.dialogConf.title" 
                             :size="itemConf.dialogConf.size"
                             :top="itemConf.dialogConf.top" 
@@ -169,7 +169,7 @@
                             title="打印配置" 
                             :modal="false"
                             size="tiny"
-                            v-model="printVisible" >
+                            :visible.sync="printVisible" >
                                 <printConf
                                   :menuCode="menuCode"
                                   @close="_close" 
@@ -180,7 +180,7 @@
                 <!--审批状态预览-->
                     <el-dialog ref="stateDialog" v-if="baseInfoConf.moduleType=='2'"
                             :title="tableInfoConf.approveConf.dialogConf.title" 
-                            v-model="stateVisible" 
+                            :visible.sync="stateVisible" 
                             :close-on-click-modal="true"
                             lock-scroll
                             :modal="false"
@@ -195,7 +195,7 @@
 
                 <!--审批界面-->
                     <el-dialog ref="approveDialog" title="审批" 
-                                    v-model="approveFormVisible" 
+                                    :visible.sync="approveFormVisible" 
                                     size="small"  
                                     top="15%" 
                                     :modal="false"
@@ -211,8 +211,7 @@
                                     @close="_close" 
                                     v-if="approveFormVisible">
                                 </roleApprove>
-                    </el-dialog>
-
+                     </el-dialog>
                </div>  
       </yl-columnlay> 
   

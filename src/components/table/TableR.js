@@ -105,49 +105,68 @@
         },
         getpagination(val) { 
             if(val===undefined){this.input.maxResultCount=this.paginationAttr.pageSize;}
-            else{this.input.maxResultCount=this.paginationAttr.pageSize=val;}
+            else{
+                this.input.maxResultCount=this.paginationAttr.pageSize=val;}
                 let draw=this.input.draw,
                     array=this.tableData,
                     pageSize=this.input.maxResultCount,
                     offset=this.input.skipCount;  
                 this.pageData=(offset + pageSize >= array.length) ? array.slice(offset,array.length) : array.slice(offset, offset + pageSize);
                },
-        createCol(columns,columnDefaultAttr){
+       renderItem(columns,columnDefaultAttr){
               return   columns.map((column) => {
                             const columnAttr = Object.assign({}, columnDefaultAttr, column.attr)
+
+                            if(column.isParent){
+                                <el-table-column
+                                    label={columnAttr.label}
+                                    render-header={columnAttr.renderHeader}
+                                    resizable={columnAttr.resizable}
+                                    formatter={columnAttr.formatter}
+                                    header-align={columnAttr.headerAlign}
+                                    class-name={columnAttr.className}
+                                    label-class-name={columnAttr.labelClassName}
+                                >
+                                    {
+                                    this.renderItem(column.items,columnDefaultAttr)
+                                    }
+                                </el-table-column>
+                            }else{
                                 return <el-table-column
-                                type={columnAttr.type}
-                                index={columnAttr.index}
-                                column-key={columnAttr.columnKey}
-                                label={columnAttr.label}
-                                prop={columnAttr.prop}
-                                width={columnAttr.width}
-                                min-width={columnAttr.minWidth}
-                                fixed={columnAttr.fixed}
-                                render-header={columnAttr.renderHeader}
-                                sortable={columnAttr.sortable}
-                                sort-method={columnAttr.sortMethod}
-                                sort-by={columnAttr.sortBy}
-                                sort-orders={columnAttr.sortOrders}
-                                resizable={columnAttr.resizable}
-                                formatter={columnAttr.formatter}
-                                show-overflow-tooltip={columnAttr.showOverflowTooltip}
-                                align={columnAttr.align}
-                                header-align={columnAttr.headerAlign}
-                                class-name={columnAttr.className}
-                                label-class-name={columnAttr.labelClassName}
-                                selectable={columnAttr.selectable}
-                                reserve-selection={columnAttr.reserveSelection}
-                                filters={columnAttr.filters}
-                                filter-placement={columnAttr.filterPlacement}
-                                filter-multiple={columnAttr.filterMultiple}
-                                filter-method={columnAttr.filterMethod}
-                                filtered-value={columnAttr.filterValue}
-                            >
-                                {
-                                    columnAttr.scopedSlot ? this.$scopedSlots[columnAttr.scopedSlot] : ''
-                                }
-                            </el-table-column>
+                                            type={columnAttr.type}
+                                            index={columnAttr.index}
+                                            column-key={columnAttr.columnKey}
+                                            label={columnAttr.label}
+                                            prop={columnAttr.prop}
+                                            width={columnAttr.width}
+                                            min-width={columnAttr.minWidth}
+                                            fixed={columnAttr.fixed}
+                                            render-header={columnAttr.renderHeader}
+                                            sortable={columnAttr.sortable}
+                                            sort-method={columnAttr.sortMethod}
+                                            sort-by={columnAttr.sortBy}
+                                            sort-orders={columnAttr.sortOrders}
+                                            resizable={columnAttr.resizable}
+                                            formatter={columnAttr.formatter}
+                                            show-overflow-tooltip={columnAttr.showOverflowTooltip}
+                                            align={columnAttr.align}
+                                            header-align={columnAttr.headerAlign}
+                                            class-name={columnAttr.className}
+                                            label-class-name={columnAttr.labelClassName}
+                                            selectable={columnAttr.selectable}
+                                            reserve-selection={columnAttr.reserveSelection}
+                                            filters={columnAttr.filters}
+                                            filter-placement={columnAttr.filterPlacement}
+                                            filter-multiple={columnAttr.filterMultiple}
+                                            filter-method={columnAttr.filterMethod}
+                                            filtered-value={columnAttr.filterValue}
+                                        >
+                                            {
+                                                columnAttr.scopedSlot ? this.$scopedSlots[columnAttr.scopedSlot] : ''
+                                            }
+                                        </el-table-column>
+                            }
+                              
                })
         }  
     },
@@ -172,7 +191,7 @@
                                 v-loading={this.tableloading}
                                 element-loading-text="加载中..."
                                 style={tableAttr.style}
-                                data={tableAttr.data.data}
+                                data={this.pageData}
                                 height={tableAttr.height}
                                 max-height={tableAttr.maxHeight}
                                 stripe={tableAttr.stripe}
@@ -220,7 +239,7 @@
                                 on-expand-change={this.handleEvent('expand-change')}
                                 >
                                     {
-                                        this.createCol(columns,columnDefaultAttr)
+                                        this.renderItem(columns,columnDefaultAttr)
                                     }
                         </el-table>
                     </div>
@@ -229,13 +248,13 @@
                                 <el-pagination   
                                     on-size-change={this.handleSizeChange}
                                     on-current-change={this.handleCurrentChange}
-                                    current-page={tableAttr.data.draw}
+                                    current-page={this.input.draw}
                                     page-sizes={ this.paginationAttr.pageSizes}
                                     page-size={this.input.maxResultCount}
                                     prev-text={this.paginationAttr.prevText}
                                     next-text={this.paginationAttr.nextText}
                                     disabled={this.paginationAttr.disabled}
-                                    total={tableAttr.data.recordsFiltered}
+                                    total={this.tableData.length}
                                     layout={ this.paginationAttr.layout}
                                     >
                                 </el-pagination>

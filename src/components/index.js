@@ -35,7 +35,7 @@ import TableR from './table/TableR.js';
 import OnlyTable from './table/OnlyTable.js';
 import tableEdit from './tableedit/tableEdit'
 import jsonEditor from './editor/jsonEditor'
-import mdEditor from './editor/mdEditor'
+// import mdEditor from './editor/mdEditor'
 import wangEditor from './editor/wangEditor/wangEditor.vue'
 import CommonSelect from './commonselect/CommonSelect'
 import sumBlock from './container/sumBlock'
@@ -114,7 +114,7 @@ Vue.component('yl-dynamicPage', dynamicPage)
 Vue.component('yl-singleupload', singleUpload)
 Vue.component('yl-multipleupload', multipleUpload)
 Vue.component('yl-editor', wangEditor)
-Vue.component('yl-mdeditor', mdEditor)
+// Vue.component('yl-mdeditor', mdEditor)
 Vue.component('yl-jsoneditor', jsonEditor)
 Vue.component('yl-statisticsBlock', statisticsBlock)
 Vue.component('yl-formContainer', formContainer)

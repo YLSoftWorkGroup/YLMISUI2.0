@@ -117,6 +117,9 @@ export default {
                 this.setFilterParams(params,'filter')
 
                 this.setGlobObject2(params);
+            }else{
+                //带条件的过滤转化
+                
             }
         },
         _inputArrInit(){

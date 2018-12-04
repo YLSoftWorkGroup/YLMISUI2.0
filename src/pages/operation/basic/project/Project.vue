@@ -8,7 +8,7 @@
                 <div slot="right" >       
                     <el-form  :model="formModel"  :rules="rules"  ref="formModel" label-width="110px" style="padding:15px 1.5em 3ex 1%;">
   <el-row>
-     <el-col :span="24">
+      <el-col :span="24">
          <el-form-item label="所属项目部" prop="shortName">
              <el-input :disabled="true" v-model="formModel.shortName"></el-input>
          </el-form-item>
@@ -21,6 +21,19 @@
          </el-form-item>
          </el-col>
     </el-row>
+      <el-col :span="24">
+        <el-form-item label="项目地址" prop="pAddress">
+                <yl-map ref="adressMap"
+                :styl="{width:'100%',height:'200px'}"
+                :plugin="mapPlugin"
+                @getInfo="_getInfo"        
+                ></yl-map>
+            </el-form-item>   
+            <el-form-item label="" prop="pAddress">
+                <el-input v-model="formModel.pAddress" ></el-input>
+            </el-form-item>   
+      </el-col > 
+     
     <el-row>
         <el-col :span="12">
         </el-col>
@@ -145,16 +158,7 @@
          </el-form-item>
          </el-col>
        </el-row> 
-         <el-form-item label="项目地址" prop="pAddress">
-             <yl-map ref="adressMap"
-             :styl="{width:'100%',height:'200px'}"
-             :plugin="mapPlugin"
-             @getInfo="_getInfo"        
-            ></yl-map>
-         </el-form-item>   
-         <el-form-item label="" prop="pAddress">
-             <el-input v-model="formModel.pAddress" ></el-input>
-         </el-form-item>    
+         
          <el-form-item label="项目概况" prop="pDescriptions">
              <el-input v-model="formModel.pDescriptions" type="textarea" :rows="4"  ></el-input>
          </el-form-item>

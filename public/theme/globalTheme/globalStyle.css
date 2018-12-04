@@ -16,19 +16,4 @@
 .border-color-lighter{ color:#ebeef5;}
 .border-color-extra-light{ color:#f2f6fc ;}
 
-/* Background
--------------------------- */
-.background-color-base{background-color:#fff;} 
 
-/* Border
--------------------------- */
-.border-base{border:1px solid #dcdfe6;} 
-
-/* Font
--------------------------- */
-.font-size-base{font-size: 14px;}
-.font-size-small{font-size: 12px;}
-.font-size-large{font-size: 18px;}
-.font-color-disabled-base{color:#bbb;}
-.font-weight-primary-base{font-weight: 500;}
-.font-line-height-primary{line-height: 24px;}

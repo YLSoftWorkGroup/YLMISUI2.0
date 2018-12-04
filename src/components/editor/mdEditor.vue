@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import 'simplemde/dist/simplemde.min.css'
-import SimpleMDE from 'simplemde'
+// import 'simplemde/dist/simplemde.min.css'
+// import SimpleMDE from 'simplemde'
 export default {
   name: 'Sticky',
   props: {
